@@ -1,22 +1,13 @@
 <template>
   <div id="app">
-    <h1>Is this bootstrap</h1>
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/interval-trainer">Interval Trainer</router-link>
+    </div>
+    <router-view/>
   </div>
 </template>
 
-<script>
-// import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'App',
-  components: {
-
-  }
-}
-</script>
-
 <style>
-#app {
 
-}
 </style>
