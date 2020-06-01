@@ -9,9 +9,9 @@ export default {
 </script>
 
 
-<style scoped>
-
+<style lang="scss" scoped>
+  $cherry: red;
   div {
-    color: red;
+    color: $cherry;
   }
 </style>

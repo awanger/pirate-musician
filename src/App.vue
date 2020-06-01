@@ -8,8 +8,6 @@
   </div>
 </template>
 
-<style>
+<style lang="scss">
   @import './../node_modules/bulma/css/bulma.css';
-
-
 </style>
