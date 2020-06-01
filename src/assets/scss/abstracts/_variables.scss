@@ -4,6 +4,7 @@
 
 /// color palette
 $lagoon: #02BAF2;
+$overboard: #009DCD;
 $black-flag: #364347;
 $coral: #D6E1E5;
 
@@ -16,7 +17,8 @@ $text-font-stack: 'Source Sans Pro', sans-serif !default;
 /// @type List
 $code-font-stack: 'Courier New', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Monaco', monospace !default;
 
-
+/// Shadow offset to create 3D effect in buttons
+$shadow-offset: 0 14px;
 
 
 

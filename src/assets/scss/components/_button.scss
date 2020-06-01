@@ -3,8 +3,13 @@
 // -----------------------------------------------------------------------------
 .btn {
   background-color: transparent; // temporarily
+  cursor: pointer;
   &.btn-speaker {
-    
+    background-color: $lagoon;
+    box-shadow: $shadow-offset $overboard; // 3D button effect
+    border-radius: 10px;
+    width: 220px;
+    height: 220px;
   }
   
   &.btn-action {

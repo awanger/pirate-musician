@@ -1,21 +1,23 @@
 <template>
   <div id='interval-trainer'>
     <div class="btn btn-speaker">Speaker Icon Here</div>
-    <h1 class="question">What interval do you hear?</h1>
-    <div class="multiple-choice-grid">
-      <button class="btn btn-answer">Unison</button>
-      <button class="btn btn-answer">m2</button>
-      <button class="btn btn-answer">M2</button>
-      <button class="btn btn-answer">m3</button>
-      <button class="btn btn-answer">M3</button>
-      <button class="btn btn-answer">m2</button>
-      <button class="btn btn-answer">M2</button>
-      <button class="btn btn-answer">m3</button>
-      <button class="btn btn-answer">M3</button>
-      <button class="btn btn-answer">m2</button>
-      <button class="btn btn-answer">M2</button>
-      <button class="btn btn-answer">m3</button>
-      <button class="btn btn-answer">M3</button>
+    <div>
+      <h1 class="question">What interval do you hear?</h1>
+      <div class="multiple-choice-grid">
+        <button class="btn btn-answer">Unison</button>
+        <button class="btn btn-answer">m2</button>
+        <button class="btn btn-answer">M2</button>
+        <button class="btn btn-answer">m3</button>
+        <button class="btn btn-answer">M3</button>
+        <button class="btn btn-answer">m2</button>
+        <button class="btn btn-answer">M2</button>
+        <button class="btn btn-answer">m3</button>
+        <button class="btn btn-answer">M3</button>
+        <button class="btn btn-answer">m2</button>
+        <button class="btn btn-answer">M2</button>
+        <button class="btn btn-answer">m3</button>
+        <button class="btn btn-answer">M3</button>
+      </div>
     </div>
   </div>
 </template>
@@ -30,7 +32,7 @@ export default {
 <style lang="scss" scoped>
   #interval-trainer {
     display: grid;
-    
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .multiple-choice-grid {
