@@ -2,13 +2,15 @@
 // This file contains all application-wide Sass variables.
 // -----------------------------------------------------------------------------
 
-
-
+/// color palette
+$lagoon: #02BAF2;
+$black-flag: #364347;
+$coral: #D6E1E5;
 
 
 /// Regular font family
 /// @type List
-$text-font-stack: 'Open Sans', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
+$text-font-stack: 'Source Sans Pro', sans-serif !default;
 
 /// Code (monospace) font family
 /// @type List
@@ -20,11 +22,11 @@ $code-font-stack: 'Courier New', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono',
 
 /// Copy text color
 /// @type Color
-$text-color: rgb(34, 34, 34) !default;
+$text-color: $black-flag !default;
 
 /// Main brand color
 /// @type Color
-$brand-color: rgb(229, 0, 80) !default;
+$brand-color: $lagoon !default;
 
 /// Light grey
 /// @type Color

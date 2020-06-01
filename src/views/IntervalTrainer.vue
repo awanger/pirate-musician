@@ -1,17 +1,42 @@
 <template>
-  <div>This is an interval trainer</div>  
+  <div id='interval-trainer'>
+    <div class="btn btn-speaker">Speaker Icon Here</div>
+    <h1 class="question">What interval do you hear?</h1>
+    <div class="multiple-choice-grid">
+      <button class="btn btn-answer">Unison</button>
+      <button class="btn btn-answer">m2</button>
+      <button class="btn btn-answer">M2</button>
+      <button class="btn btn-answer">m3</button>
+      <button class="btn btn-answer">M3</button>
+      <button class="btn btn-answer">m2</button>
+      <button class="btn btn-answer">M2</button>
+      <button class="btn btn-answer">m3</button>
+      <button class="btn btn-answer">M3</button>
+      <button class="btn btn-answer">m2</button>
+      <button class="btn btn-answer">M2</button>
+      <button class="btn btn-answer">m3</button>
+      <button class="btn btn-answer">M3</button>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-  
+
 }
 </script>
 
 
 <style lang="scss" scoped>
-  $cherry: red;
-  div {
-    color: $cherry;
+  #interval-trainer {
+    display: grid;
+    
   }
+
+  .multiple-choice-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 20px;
+  }
+
 </style>
