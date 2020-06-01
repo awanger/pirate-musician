@@ -31,8 +31,11 @@ export default {
 
 <style lang="scss" scoped>
   #interval-trainer {
+    padding-top: 100px;
+
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    column-gap: 38px;
   }
 
   .multiple-choice-grid {

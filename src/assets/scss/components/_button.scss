@@ -8,8 +8,8 @@
     background-color: $lagoon;
     box-shadow: $shadow-offset $overboard; // 3D button effect
     border-radius: 10px;
-    width: 220px;
-    height: 220px;
+    width: 198px;
+    height: 198px;
   }
   
   &.btn-action {
@@ -19,7 +19,7 @@
   &.btn-answer {
     border: 2px solid $coral;
     border-radius: 10px;
-    width: 201px;
-    height: 51px;
+    width: 180px;
+    height: 45px;
   }
 }
