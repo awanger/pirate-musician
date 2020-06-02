@@ -1,6 +1,6 @@
 <template>
   <div id='interval-trainer'>
-    <div class="btn btn-speaker">Speaker Icon Here</div>
+    <play-button/>
     <div>
       <h1 class="question">What interval do you hear?</h1>
       <div class="multiple-choice-grid">
@@ -23,7 +23,15 @@
 </template>
 
 <script>
+import PlayButton from "./../components/interval-trainer/PlayButton";
+
 export default {
+  components: { PlayButton },
+  data() {
+    return {
+      isSelected: null
+    }
+  }
 
 }
 </script>
@@ -32,7 +40,6 @@ export default {
 <style lang="scss" scoped>
   #interval-trainer {
     padding-top: 100px;
-
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 38px;
