@@ -1,5 +1,5 @@
 <template>
-  <button id="action-btn" class="btn btn-action">
+  <button class="btn btn-action disabled">
     Check
   </button>
 </template>
@@ -14,5 +14,5 @@ export default {
 
 
 <style lang="scss" scoped>
-
+  
 </style>

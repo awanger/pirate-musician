@@ -11,5 +11,5 @@
 
 <style lang="scss">
   // @import './../node_modules/bulma/css/bulma.css';
-  @import './../src/assets/scss/main.scss';
+  @import '@/assets/scss/main.scss';
 </style>
