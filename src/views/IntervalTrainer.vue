@@ -76,7 +76,7 @@ export default {
     left: 0px;
     bottom: 0px;
     width: 100%;
-    height: 275px;
+    height: 20vh;
 
     .container {
       display: flex;
