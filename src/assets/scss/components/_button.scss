@@ -21,8 +21,7 @@
   &.btn-action {
     background-color: $treasure-island;
     box-shadow: $shadow-offset $dark-island; // 3D button effect
-    width: 180px;
-    height: 45px;
+    @extend %default-btn-size;
     font-size: 18px;
     font-weight: 500;
   }
@@ -31,8 +30,7 @@
     background-color: transparent;
     color: $black-flag;
     border: 2px solid $coral;
-    width: 180px;
-    height: 45px;
+    @extend %default-btn-size;
   }
 
   &:focus {
