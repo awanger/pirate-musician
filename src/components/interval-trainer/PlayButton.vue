@@ -1,5 +1,5 @@
 <template>
-  <div class="btn btn-speaker">Speaker Icon Here</div>
+  <button class="btn btn-play">Speaker Icon Here</button>
 </template>
 
 <script>
