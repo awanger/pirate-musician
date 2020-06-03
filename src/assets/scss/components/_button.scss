@@ -2,24 +2,40 @@
 // This file contains all styles related to the button component.
 // -----------------------------------------------------------------------------
 .btn {
-  background-color: transparent; // temporarily
   cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  color: $white;
+  
+  &.disabled {
+    opacity: 0.2 !important;
+  }
+  
   &.btn-speaker {
     background-color: $lagoon;
     box-shadow: $shadow-offset $overboard; // 3D button effect
-    border-radius: 10px;
     width: 198px;
     height: 198px;
   }
   
   &.btn-action {
-    
+    background-color: $treasure-island;
+    box-shadow: $shadow-offset $dark-island; // 3D button effect
+    width: 180px;
+    height: 45px;
+    font-size: 20px;
+    font-weight: 500;
   }
   
   &.btn-answer {
+    background-color: transparent;
+    color: $black-flag;
     border: 2px solid $coral;
-    border-radius: 10px;
     width: 180px;
     height: 45px;
+  }
+
+  &:focus {
+    outline: none;
   }
 }

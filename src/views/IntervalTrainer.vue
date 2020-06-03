@@ -1,6 +1,7 @@
 <template>
   <div id='interval-trainer'>
     <play-button v-on:click.native="send('CLICK');" />
+    <action-button/>
     <div v-if="currentState.matches('displayQuestion')">
       hi freak bitches
     </div>
@@ -27,11 +28,13 @@
 
 <script>
 import PlayButton from "@/components/interval-trainer/PlayButton";
+import ActionButton from "@/components/interval-trainer/ActionButton";
+
 import { interpret } from 'xstate';
 import quizMachine from "@/machine";
 
 export default {
-  components: { PlayButton },
+  components: { PlayButton, ActionButton },
   created() {
     this.quizService.onTransition(state=> {
       console.log(state.value);
