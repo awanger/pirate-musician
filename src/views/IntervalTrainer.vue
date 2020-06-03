@@ -1,6 +1,9 @@
 <template>
   <div id='interval-trainer'>
-    <play-button v-on:click.native="send('TOGGLE');" />
+    <play-button v-on:click.native="send('CLICK');" />
+    <div v-if="currentState.matches('displayQuestion')">
+      hi freak bitches
+    </div>
     <div>
       <h1 class="question">What interval do you hear?</h1>
       <div class="multiple-choice-grid">
@@ -27,6 +30,8 @@ import PlayButton from "@/components/interval-trainer/PlayButton";
 import { Machine, interpret } from 'xstate';
 
 
+// console.log(this.currentState.matches('loading'));
+
 // conditional guard
 const isCorrect = ({ age }) => age >= 18;
 const isWrong = ({ age }) => age < 18;  
@@ -36,11 +41,12 @@ const quizCompleted = ({questionsRemaining}) => questionsRemaining == 0;
 const quizMachine = Machine({
   id: 'quiz',
   context: {
-    /* some data */
+    currentQuestionIndex: 0,
+    questions: []
   },
-  initial: 'loadQuestion',
+  initial: 'loading',
   states: {
-    loadQuestion: {
+    loading: {
       on: { '': [
             { target: 'complete', cond: quizCompleted},
             { target: 'displayQuestion' }
@@ -58,7 +64,7 @@ const quizMachine = Machine({
       }
     },
     correctAnswer: {
-      on: { CLICK: 'loadQuestion' }
+      on: { CLICK: 'loading' }
     },
     wrongAnswer: {
       on: { CLICK: 'displayQuestion' }
@@ -80,7 +86,7 @@ export default {
     return {
       // Interpret the machine and store in data
       quizService: interpret(quizMachine),
-      currentState: quizMachine.initial
+      currentState: quizMachine.initialState
     }
   },
   methods: {
