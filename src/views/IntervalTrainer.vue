@@ -62,9 +62,8 @@ export default {
 
 
 <style lang="scss" scoped>
-
   #question-display {
-    padding-top: 100px;
+    margin-top: 240px; // probably need to write additional media queries
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 38px;

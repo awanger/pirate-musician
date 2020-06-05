@@ -10,6 +10,7 @@ const quizMachine = Machine({
   id: 'quiz',
   context: {
     currentQuestionIndex: 0,
+    answerSelected: null,
     questions: []
   },
   initial: 'loading',
