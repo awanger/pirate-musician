@@ -71,7 +71,7 @@ export default {
   }
 
   .footer {
-    border-top: 3px solid black;
+    border-top: 2px solid #D6E1E5;
     position: absolute;
     left: 0px;
     bottom: 0px;
