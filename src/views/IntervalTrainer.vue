@@ -1,30 +1,32 @@
 <template>
   <div id="interval-trainer">
+    <div>{{ currentState.value }}</div>
+    <div>{{ currentState.context }}</div>
     <div id='question-display'>
-      <play-button v-on:click.native="send('CLICK');" />
+      <play-button />
       <div>
         <h1 class="question">What interval do you hear?</h1>
         <div class="multiple-choice-grid">
-          <button class="btn btn-answer">Unison</button>
-          <button class="btn btn-answer">m2</button>
-          <button class="btn btn-answer">M2</button>
-          <button class="btn btn-answer">m3</button>
-          <button class="btn btn-answer">M3</button>
-          <button class="btn btn-answer">P4</button>
-          <button class="btn btn-answer">Tritone</button>
-          <button class="btn btn-answer">P5</button>
-          <button class="btn btn-answer">m6</button>
-          <button class="btn btn-answer">M6</button>
-          <button class="btn btn-answer">m7</button>
-          <button class="btn btn-answer">M7</button>
-          <button class="btn btn-answer">P8</button>
+          <button class="btn btn-answer" v-on:click="send('CLICK', $event);">Unison</button>
+          <button class="btn btn-answer" v-on:click="send('CLICK', $event);">m2</button>
+          <button class="btn btn-answer" v-on:click="send('CLICK', $event);">M2</button>
+          <button class="btn btn-answer" v-on:click="send('CLICK', $event);">m3</button>
+          <button class="btn btn-answer" v-on:click="send('CLICK', $event);">M3</button>
+          <button class="btn btn-answer" v-on:click="send('CLICK', $event);">P4</button>
+          <button class="btn btn-answer" v-on:click="send('CLICK', $event);">Tritone</button>
+          <button class="btn btn-answer" v-on:click="send('CLICK', $event);">P5</button>
+          <button class="btn btn-answer" v-on:click="send('CLICK', $event);">m6</button>
+          <button class="btn btn-answer" v-on:click="send('CLICK', $event);">M6</button>
+          <button class="btn btn-answer" v-on:click="send('CLICK', $event);">m7</button>
+          <button class="btn btn-answer" v-on:click="send('CLICK', $event);">M7</button>
+          <button class="btn btn-answer" v-on:click="send('CLICK', $event);">P8</button>
         </div>
       </div>
     </div>
     <footer class="footer">
       <div class="container">
       <p>My gear icon goes here</p>
-      <action-button/>
+      <!-- <action-button v-bind:currentState="currentState"/> -->
       </div>
     </footer>
   </div>
@@ -32,16 +34,16 @@
 
 <script>
 import PlayButton from "@/components/interval-trainer/PlayButton";
-import ActionButton from "@/components/interval-trainer/ActionButton";
+// import ActionButton from "@/components/interval-trainer/ActionButton";
 
 import { interpret } from 'xstate';
 import quizMachine from "@/machine";
 
 export default {
-  components: { PlayButton, ActionButton },
+  components: { PlayButton },
   created() {
     this.quizService.onTransition(state=> {
-      console.log(state.value);
+      this.currentState = state;
     }).start();
   },
   data() {
@@ -52,11 +54,18 @@ export default {
     }
   },
   methods: {
-    send(event) {
-      this.quizService.send(event);
+    send(event, nativeEvent) {
+      const eventObj = {
+        type: event,
+        selectedButton: nativeEvent
+      }
+      this.quizService.send(eventObj);
+      // console.log('-------Event-----------')
+      // console.log(event);
+      // console.log('-------nativeEvent-----------')
+      // console.log(nativeEvent);
     }
   }
-
 }
 </script>
 

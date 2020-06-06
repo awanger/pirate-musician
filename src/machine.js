@@ -1,4 +1,4 @@
-import { Machine } from 'xstate';
+import { Machine, assign } from 'xstate';
 
 // conditional guard
 const isCorrect = ({ age }) => age >= 18;
@@ -10,8 +10,9 @@ const quizMachine = Machine({
   id: 'quiz',
   context: {
     currentQuestionIndex: 0,
-    answerSelected: null,
-    questions: []
+    selectedAnswer: null,
+    questions: [],
+    count: 0
   },
   initial: 'loading',
   states: {
@@ -22,20 +23,23 @@ const quizMachine = Machine({
         ] }
     },
     displayQuestion: {
-      on: { CLICK: 'checkAnswer' }
+      on: { CLICK: { target: 'checked', 
+                     actions: assign({ selectedAnswer: (context, event) => context.selectedAnswer = event.selectedButton }) // assign selectedAnswer to the interval name
+            }
+      }
     },
-    checkAnswer: {
+    checked: {
       on: {
         CLICK: [
-          { target: 'correctAnswer', cond: isCorrect },
-          { target: 'wrongAnswer', cond: isWrong }
+          { target: 'correct', cond: isCorrect },
+          { target: 'wrong', cond: isWrong }
         ]
       }
     },
-    correctAnswer: {
+    correct: {
       on: { CLICK: 'loading' }
     },
-    wrongAnswer: {
+    wrong: {
       on: { CLICK: 'displayQuestion' }
     },
     complete: {

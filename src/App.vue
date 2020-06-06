@@ -3,7 +3,7 @@
     <div class="container">
     <router-link to="/">Home</router-link> |
     <router-link to="/interval-trainer">Interval Trainer</router-link>
-
+  
     <router-view/>
     </div>
   </div>
