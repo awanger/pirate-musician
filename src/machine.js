@@ -31,6 +31,7 @@ const quizMachine = Machine({
     checked: {
       on: {
         CLICK: [
+          { target: 'checked'},
           { target: 'correct', cond: isCorrect },
           { target: 'wrong', cond: isWrong }
         ]

@@ -26,7 +26,7 @@
     <footer class="footer">
       <div class="container">
       <p>My gear icon goes here</p>
-      <!-- <action-button v-bind:currentState="currentState"/> -->
+      <action-button v-bind:intervalTrainerState="currentState"/>
       </div>
     </footer>
   </div>
@@ -34,13 +34,13 @@
 
 <script>
 import PlayButton from "@/components/interval-trainer/PlayButton";
-// import ActionButton from "@/components/interval-trainer/ActionButton";
+import ActionButton from "@/components/interval-trainer/ActionButton";
 
 import { interpret } from 'xstate';
 import quizMachine from "@/machine";
 
 export default {
-  components: { PlayButton },
+  components: { PlayButton, ActionButton },
   created() {
     this.quizService.onTransition(state=> {
       this.currentState = state;

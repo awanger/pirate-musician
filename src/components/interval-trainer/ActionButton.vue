@@ -1,6 +1,6 @@
 <template>
-  <button class="btn btn-action disabled">
-    <div v-if="intervalTrainerState.matches('checkAnswer')">
+  <button class="btn btn-action" disabled>
+    <div v-if="intervalTrainerState.matches('checked')">
       checkMate man
     </div>
   </button>
@@ -14,7 +14,7 @@ import { Machine, interpret } from 'xstate';
 const actionBtnMachine = Machine({
   id: 'actionButton',
   context: {
-    text: "",
+    text: "Check",
     style: "",
   },
   initial: 'disabled',
@@ -23,13 +23,13 @@ const actionBtnMachine = Machine({
       on: { CLICK: 'checked' }
     },
     checked: {
-      on: { CLICK: 'checkAnswer' }
+      on: {}
     },
     correct: {
       on: {}
     },
     wrong: {
-      on: { CLICK: 'loading' }
+      on: {}
     }
   }
 });
@@ -38,12 +38,17 @@ const actionBtnMachine = Machine({
 export default {
   name: "ActionButton",
   created() {
-    this.actionBtnService.start();
+    this.actionBtnService.onTransition( state => {
+      this.currentState = state;
+      this.context = state.context;
+    })
+    .start();
   },
   data() {
     return {
       actionBtnService: interpret(actionBtnMachine),
-      currentState: actionBtnMachine.initialState
+      currentState: actionBtnMachine.initialState,
+      context: actionBtnMachine.context
     }
   },
   methods: {
