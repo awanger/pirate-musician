@@ -1,64 +1,40 @@
 <template>
-  <button class="btn btn-action" disabled>
-    <div v-if="intervalTrainerState.matches('checked')">
-      checkMate man
+  <button class="btn btn-action" v-bind:disabled="!intervalTrainerState.matches('checked')">
+    <div v-if="intervalTrainerState.matches('checked') || intervalTrainerState.matches('displayQuestion') ">
+      Check
+    </div>
+    <div v-if="intervalTrainerState.matches('correct')">
+      Continue
+    </div>
+    <div v-if="intervalTrainerState.matches('wrong')">
+      Try Again
     </div>
   </button>
 </template>
 
 
 <script>
-import { Machine, interpret } from 'xstate';
-
-// create Action Button machine
-const actionBtnMachine = Machine({
-  id: 'actionButton',
-  context: {
-    text: "Check",
-    style: "",
-  },
-  initial: 'disabled',
-  states: {
-    disabled: {
-      on: { CLICK: 'checked' }
-    },
-    checked: {
-      on: {}
-    },
-    correct: {
-      on: {}
-    },
-    wrong: {
-      on: {}
-    }
-  }
-});
-
 
 export default {
   name: "ActionButton",
-  created() {
-    this.actionBtnService.onTransition( state => {
-      this.currentState = state;
-      this.context = state.context;
-    })
-    .start();
-  },
   data() {
     return {
-      actionBtnService: interpret(actionBtnMachine),
-      currentState: actionBtnMachine.initialState,
-      context: actionBtnMachine.context
+      // isDisabled: !this.intervalTrainerState.matches('checked')
     }
   },
   methods: {
-    send(event) {
-      this.actionBtnService.send(event);
-    }
+
   },
   props: {
-    intervalTrainerState: Object // need to translate the information intervalTrainer is sending to something the ActionButton will understand
-  }
+    intervalTrainerState: Object
+  },
+  watch: {
+    intervalTrainerState: (state)=> {
+      console.log('current intervaltrainerstate:', state);
+      // console.log(this.intervalTrainerState);
+    }
+  },
+
 }
 </script>
 

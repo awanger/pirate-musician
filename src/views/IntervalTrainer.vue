@@ -26,7 +26,7 @@
     <footer class="footer">
       <div class="container">
       <p>My gear icon goes here</p>
-      <action-button v-bind:intervalTrainerState="currentState"/>
+      <action-button v-on:click.native="send('CLICK', $event)" v-bind:intervalTrainerState="currentState"/>
       </div>
     </footer>
   </div>
