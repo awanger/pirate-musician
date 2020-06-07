@@ -7,19 +7,19 @@
       <div>
         <h1 class="question">What interval do you hear?</h1>
         <div class="multiple-choice-grid">
-          <button class="btn btn-answer" v-on:click="send('CLICK', $event);">Unison</button>
-          <button class="btn btn-answer" v-on:click="send('CLICK', $event);">m2</button>
-          <button class="btn btn-answer" v-on:click="send('CLICK', $event);">M2</button>
-          <button class="btn btn-answer" v-on:click="send('CLICK', $event);">m3</button>
-          <button class="btn btn-answer" v-on:click="send('CLICK', $event);">M3</button>
-          <button class="btn btn-answer" v-on:click="send('CLICK', $event);">P4</button>
-          <button class="btn btn-answer" v-on:click="send('CLICK', $event);">Tritone</button>
-          <button class="btn btn-answer" v-on:click="send('CLICK', $event);">P5</button>
-          <button class="btn btn-answer" v-on:click="send('CLICK', $event);">m6</button>
-          <button class="btn btn-answer" v-on:click="send('CLICK', $event);">M6</button>
-          <button class="btn btn-answer" v-on:click="send('CLICK', $event);">m7</button>
-          <button class="btn btn-answer" v-on:click="send('CLICK', $event);">M7</button>
-          <button class="btn btn-answer" v-on:click="send('CLICK', $event);">P8</button>
+          <button data-interval="unison" class="btn btn-answer" v-on:click="send('CLICK', $event);">Unison</button>
+          <button data-interval="m2" class="btn btn-answer" v-on:click="send('CLICK', $event);">m2</button>
+          <button data-interval="M2" class="btn btn-answer" v-on:click="send('CLICK', $event);">M2</button>
+          <button data-interval="m3" class="btn btn-answer" v-on:click="send('CLICK', $event);">m3</button>
+          <button data-interval="M3" class="btn btn-answer" v-on:click="send('CLICK', $event);">M3</button>
+          <button data-interval="P4" class="btn btn-answer" v-on:click="send('CLICK', $event);">P4</button>
+          <button data-interval="Tritone" class="btn btn-answer" v-on:click="send('CLICK', $event);">Tritone</button>
+          <button data-interval="P5" class="btn btn-answer" v-on:click="send('CLICK', $event);">P5</button>
+          <button data-interval="m6" class="btn btn-answer" v-on:click="send('CLICK', $event);">m6</button>
+          <button data-interval="M6" class="btn btn-answer" v-on:click="send('CLICK', $event);">M6</button>
+          <button data-interval="m7" class="btn btn-answer" v-on:click="send('CLICK', $event);">m7</button>
+          <button data-interval="M7" class="btn btn-answer" v-on:click="send('CLICK', $event);">M7</button>
+          <button data-interval="Octave" class="btn btn-answer" v-on:click="send('CLICK', $event);">Octave</button>
         </div>
       </div>
     </div>
@@ -59,6 +59,7 @@ export default {
         type: event,
         selectedButton: nativeEvent
       }
+      console.log(nativeEvent.target.dataset.interval);
       this.quizService.send(eventObj);
       // console.log('-------Event-----------')
       // console.log(event);

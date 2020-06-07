@@ -1,8 +1,8 @@
 import { Machine, assign } from 'xstate';
 
 // conditional guard
-const isCorrect = ({ age }) => age >= 18;
-const isWrong = ({ age }) => age < 18;  
+// const isCorrect = ({ age }) => age >= 18;
+// const isWrong = ({ age }) => age < 18;  
 const quizCompleted = ({questionsRemaining}) => questionsRemaining == 0;
   
 // create Interval Trainer machine
@@ -24,16 +24,26 @@ const quizMachine = Machine({
     },
     displayQuestion: {
       on: { CLICK: { target: 'checked', 
-                     actions: assign({ selectedAnswer: (context, event) => context.selectedAnswer = event.selectedButton }) // assign selectedAnswer to the interval name
+                     actions: assign({ selectedAnswer: (context, event) => context.selectedAnswer = event.selectedButton.target.dataset.interval }) // assign selectedAnswer to the interval name
             }
       }
     },
     checked: {
       on: {
         CLICK: [
-          { target: 'checked'},
-          { target: 'correct', cond: isCorrect },
-          { target: 'wrong', cond: isWrong }
+          { target: 'checked',
+            actions: assign({ selectedAnswer: (context, event) => context.selectedAnswer = event.selectedButton.target.dataset.interval })
+          },
+          // { target: 'correct', cond: isCorrect },
+          // { target: 'wrong', cond: isWrong }
+        ]
+      }
+    },
+    evaluate: {
+      on: {
+        '': [
+          { target: 'correct' },
+          { target: 'wrong' }
         ]
       }
     },

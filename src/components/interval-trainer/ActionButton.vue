@@ -1,5 +1,5 @@
 <template>
-  <button class="btn btn-action" v-bind:disabled="!intervalTrainerState.matches('checked')">
+  <button class="btn btn-action" v-bind:disabled="intervalTrainerState.matches('displayQuestion')">
     <div v-if="intervalTrainerState.matches('checked') || intervalTrainerState.matches('displayQuestion') ">
       Check
     </div>
