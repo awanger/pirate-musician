@@ -7,6 +7,8 @@
       <div>
         <h1 class="question">What interval do you hear?</h1>
         <div class="multiple-choice-grid">
+
+          <answer-button v-bind:intervalTrainerState="currentState" v-on:click.native="send('CLICK', $event)"></answer-button>
           <button data-interval="unison" class="btn btn-answer" v-on:click="send('CLICK', $event);">Unison</button>
           <button data-interval="m2" class="btn btn-answer" v-on:click="send('CLICK', $event);">m2</button>
           <button data-interval="M2" class="btn btn-answer" v-on:click="send('CLICK', $event);">M2</button>
@@ -35,12 +37,14 @@
 <script>
 import PlayButton from "@/components/interval-trainer/PlayButton";
 import ActionButton from "@/components/interval-trainer/ActionButton";
+import AnswerButton from "@/components/interval-trainer/AnswerButton";
+
 
 import { interpret } from 'xstate';
 import quizMachine from "@/machine";
 
 export default {
-  components: { PlayButton, ActionButton },
+  components: { PlayButton, ActionButton, AnswerButton },
   created() {
     this.quizService.onTransition(state=> {
       this.currentState = state;
@@ -49,10 +53,9 @@ export default {
   },
   data() {
     return {
-      // Interpret the machine and store in data
       quizService: interpret(quizMachine),
       currentState: quizMachine.initialState,
-      context: quizMachine.context
+      context: quizMachine.context,
     }
   },
   methods: {
