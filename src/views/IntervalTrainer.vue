@@ -1,7 +1,7 @@
 <template>
   <div id="interval-trainer">
     <div>{{ currentState.value }}</div>
-    <div>{{ currentState.context }}</div>
+    <div>{{ context }}</div>
     <div id='question-display'>
       <play-button />
       <div>
@@ -44,13 +44,15 @@ export default {
   created() {
     this.quizService.onTransition(state=> {
       this.currentState = state;
+      this.context = state.context;
     }).start();
   },
   data() {
     return {
       // Interpret the machine and store in data
       quizService: interpret(quizMachine),
-      currentState: quizMachine.initialState
+      currentState: quizMachine.initialState,
+      context: quizMachine.context
     }
   },
   methods: {
