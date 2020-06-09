@@ -34,8 +34,7 @@ const quizMachine = Machine({
           { target: 'checked',
             actions: assign({ selectedAnswer: (context, event) => context.selectedAnswer = event.selectedButton.target.dataset.interval })
           },
-          // { target: 'correct', cond: isCorrect },
-          // { target: 'wrong', cond: isWrong }
+          // { target: 'correct', cond: isCorrect }, if the click event is from the action button, then 
         ]
       }
     },

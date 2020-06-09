@@ -1,22 +1,31 @@
 // -----------------------------------------------------------------------------
 // This file contains all styles related to the button component.
 // -----------------------------------------------------------------------------
+
+%press-down {
+  &:active {
+    transform: translateY(6px);
+    box-shadow: 0px 0px;
+  }
+}
+
+%default-btn-size {
+  width: 160px;
+  height: 40px;
+}
+
 .btn {
   cursor: pointer;
   border: none;
   border-radius: 10px;
   color: $white;
   
-  &:disabled {
-    opacity: 0.2 !important;
-    cursor: default;
-  }
-  
   &.btn-play {
     background-color: $lagoon;
     box-shadow: $shadow-offset $overboard; // 3D button effect
     width: 198px;
     height: 198px;
+    @extend %press-down;
   }
   
   &.btn-action {
@@ -25,6 +34,13 @@
     @extend %default-btn-size;
     font-size: 18px;
     font-weight: 500;
+    @extend %press-down;
+    &:disabled {
+      opacity: 0.2;
+      transform: none;
+      box-shadow: none;
+      cursor: default;
+    }
   }
   
   &.btn-answer {
