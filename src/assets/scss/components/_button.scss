@@ -48,6 +48,11 @@
     color: $black-flag;
     border: 2px solid $coral;
     @extend %default-btn-size;
+    &.selected {
+      background-color: rgba($lagoon, 0.2);
+      color: $lagoon;
+      border: 2px solid $lagoon;
+    }
   }
 
   &:focus {

@@ -10,7 +10,6 @@ export default {
   data() {
     return {
       intervalName: 'Unison2', // hard code for now, this value should be derived somehow
-
     }
   },
   props: {
