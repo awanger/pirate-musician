@@ -3,7 +3,7 @@ import { Machine, assign } from 'xstate';
 // conditional guard
 // const isCorrect = ({ age }) => age >= 18;
 // const isWrong = ({ age }) => age < 18;  
-const quizCompleted = ({questionsRemaining}) => questionsRemaining == 0;
+const quizCompleted = ({questionsRemaining}) => questionsRemaining === 0;
   
 // create Interval Trainer machine
 const quizMachine = Machine({

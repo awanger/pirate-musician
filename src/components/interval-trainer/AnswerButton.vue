@@ -3,17 +3,17 @@
 </template>
 
 
-<script>
 
+<script>
 export default {
   name: "AnswerButton",
   data() {
     return {
-      intervalName: 'Unison2', // hard code for now, this value should be derived somehow
     }
   },
   props: {
-    intervalTrainerState: Object
+    intervalTrainerState: Object,
+    intervalName: String
   },
   watch: {
     intervalTrainerState: (state)=> {

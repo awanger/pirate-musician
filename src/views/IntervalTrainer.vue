@@ -1,34 +1,58 @@
 <template>
   <div id="interval-trainer">
-    <div>{{ currentState.value }}</div>
+    <div>current state: {{ currentState.value }}</div>
     <div>{{ context }}</div>
     <div id='question-display'>
       <play-button />
       <div>
         <h1 class="question">What interval do you hear?</h1>
         <div class="multiple-choice-grid">
-
-          <answer-button v-bind:intervalTrainerState="currentState" v-on:click.native="send('CLICK', $event)"></answer-button>
-          <button data-interval="unison" class="btn btn-answer" v-on:click="send('CLICK', $event);">Unison</button>
-          <button data-interval="m2" class="btn btn-answer" v-on:click="send('CLICK', $event);">m2</button>
-          <button data-interval="M2" class="btn btn-answer" v-on:click="send('CLICK', $event);">M2</button>
-          <button data-interval="m3" class="btn btn-answer" v-on:click="send('CLICK', $event);">m3</button>
-          <button data-interval="M3" class="btn btn-answer" v-on:click="send('CLICK', $event);">M3</button>
-          <button data-interval="P4" class="btn btn-answer" v-on:click="send('CLICK', $event);">P4</button>
-          <button data-interval="Tritone" class="btn btn-answer" v-on:click="send('CLICK', $event);">Tritone</button>
-          <button data-interval="P5" class="btn btn-answer" v-on:click="send('CLICK', $event);">P5</button>
-          <button data-interval="m6" class="btn btn-answer" v-on:click="send('CLICK', $event);">m6</button>
-          <button data-interval="M6" class="btn btn-answer" v-on:click="send('CLICK', $event);">M6</button>
-          <button data-interval="m7" class="btn btn-answer" v-on:click="send('CLICK', $event);">m7</button>
-          <button data-interval="M7" class="btn btn-answer" v-on:click="send('CLICK', $event);">M7</button>
-          <button data-interval="Octave" class="btn btn-answer" v-on:click="send('CLICK', $event);">Octave</button>
+          <answer-button :intervalName=" 'Unison' " 
+                         :intervalTrainerState="currentState" 
+                         v-on:click.native="send('CLICK', $event)"></answer-button>
+          <answer-button :intervalName=" 'm2' " 
+                         :intervalTrainerState="currentState" 
+                         v-on:click.native="send('CLICK', $event)"></answer-button>
+          <answer-button :intervalName=" 'M2' " 
+                         :intervalTrainerState="currentState" 
+                         v-on:click.native="send('CLICK', $event)"></answer-button>
+          <answer-button :intervalName=" 'm3' " 
+                         :intervalTrainerState="currentState" 
+                         v-on:click.native="send('CLICK', $event)"></answer-button>
+          <answer-button :intervalName=" 'M3' " 
+                         :intervalTrainerState="currentState" 
+                         v-on:click.native="send('CLICK', $event)"></answer-button>
+          <answer-button :intervalName=" 'P4' " 
+                         :intervalTrainerState="currentState" 
+                         v-on:click.native="send('CLICK', $event)"></answer-button>
+          <answer-button :intervalName=" 'Tritone' " 
+                         :intervalTrainerState="currentState" 
+                         v-on:click.native="send('CLICK', $event)"></answer-button>
+          <answer-button :intervalName=" 'P5' " 
+                         :intervalTrainerState="currentState" 
+                         v-on:click.native="send('CLICK', $event)"></answer-button>
+          <answer-button :intervalName=" 'm6' " 
+                         :intervalTrainerState="currentState" 
+                         v-on:click.native="send('CLICK', $event)"></answer-button>
+          <answer-button :intervalName=" 'M6' " 
+                         :intervalTrainerState="currentState" 
+                         v-on:click.native="send('CLICK', $event)"></answer-button>
+          <answer-button :intervalName=" 'm7' " 
+                         :intervalTrainerState="currentState" 
+                         v-on:click.native="send('CLICK', $event)"></answer-button>
+          <answer-button :intervalName=" 'M7' " 
+                         :intervalTrainerState="currentState" 
+                         v-on:click.native="send('CLICK', $event)"></answer-button>
+          <answer-button :intervalName=" 'Octave' " 
+                         :intervalTrainerState="currentState" 
+                         v-on:click.native="send('CLICK', $event)"></answer-button>
         </div>
       </div>
     </div>
     <footer class="footer">
       <div class="container">
       <p>My gear icon goes here</p>
-      <action-button v-on:click.native="send('CLICK', $event)" v-bind:intervalTrainerState="currentState"/>
+      <action-button v-on:click.native="send('CLICK', $event)" :intervalTrainerState="currentState"/>
       </div>
     </footer>
   </div>
