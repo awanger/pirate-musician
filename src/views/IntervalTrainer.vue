@@ -49,26 +49,20 @@
         </div>
       </div>
     </div>
-    <footer class="footer">
-      <div class="container">
-      <p>My gear icon goes here</p>
-      <action-button v-on:click.native="send('CLICK', $event)" :intervalTrainerState="currentState"/>
-      </div>
-    </footer>
+    <Footer :intervalTrainerState="currentState"></Footer>
   </div>
 </template>
 
 <script>
 import PlayButton from "@/components/interval-trainer/PlayButton";
-import ActionButton from "@/components/interval-trainer/ActionButton";
 import AnswerButton from "@/components/interval-trainer/AnswerButton";
-
+import Footer from "@/components/interval-trainer/Footer";
 
 import { interpret } from 'xstate';
 import quizMachine from "@/machine";
 
 export default {
-  components: { PlayButton, ActionButton, AnswerButton },
+  components: { PlayButton, AnswerButton, Footer },
   created() {
     this.quizService.onTransition(state=> {
       this.currentState = state;
@@ -88,12 +82,8 @@ export default {
         type: event,
         selectedButton: nativeEvent
       }
-      console.log(nativeEvent.target.dataset.interval);
+      // console.log(nativeEvent.target.dataset.interval);
       this.quizService.send(eventObj);
-      // console.log('-------Event-----------')
-      // console.log(event);
-      // console.log('-------nativeEvent-----------')
-      // console.log(nativeEvent);
     }
   }
 }
@@ -106,22 +96,6 @@ export default {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 38px;
-  }
-
-  .footer {
-    border-top: 2px solid #D6E1E5;
-    position: absolute;
-    left: 0px;
-    bottom: 0px;
-    width: 100%;
-    height: 20vh;
-
-    .container {
-      display: flex;
-      align-items: center; // vertically center
-      justify-content: space-between; // float the gear to the left and the action button to the right
-      height: 100%;
-    }
   }
 
   .multiple-choice-grid {
