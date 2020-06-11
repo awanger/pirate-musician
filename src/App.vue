@@ -1,9 +1,10 @@
 <template>
   <div id="app">
     <div class="container">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/interval-trainer">Interval Trainer</router-link>
-  
+      <div id="nav">
+        <router-link to="/">Home</router-link> |
+        <router-link to="/interval-trainer">Interval Trainer</router-link>
+      </div>
     <router-view/>
     </div>
   </div>
