@@ -46,6 +46,10 @@ export default {
     width: 40px;
     height: 40px;
     cursor: pointer;
+    transition: transform .8s ease-in-out;
+    &:hover{
+      transform: rotate(270deg);
+    }
   }
 
   .footer {
