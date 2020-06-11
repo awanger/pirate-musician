@@ -1,7 +1,7 @@
 <template>
   <footer class="footer">
     <div class="container">
-      <p>My gear icon goes here</p>
+      <img id="settings" src="@/assets/icons/cog-solid.svg" alt="Speaker icon here">
       <action-button v-on:click.native="send('CLICK', $event)" :intervalTrainerState="intervalTrainerState"/>
     </div>
   </footer>
@@ -41,6 +41,12 @@ export default {
 
 
 <style lang="scss" scoped>
+
+  #settings {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }
 
   .footer {
     border-top: 2px solid #D6E1E5;
