@@ -1,55 +1,42 @@
 <template>
   <div id="interval-trainer">
-    <div>current state: {{ currentState.value }}</div>
-    <div>{{ context }}</div>
+    <div>current state: {{ getCurrentState().value }}</div>
+    <div>{{ getCurrentState().context }}</div>
     <div id='question-display'>
       <play-button />
       <div>
         <h1 class="question">What interval do you hear?</h1>
         <div class="multiple-choice-grid">
-          <answer-button :intervalName=" 'Unison' " 
-                         :intervalTrainerState="currentState" 
+          <answer-button :intervalName=" 'Unison' "  
                          v-on:click.native="send('CLICK', $event)"></answer-button>
-          <answer-button :intervalName=" 'm2' " 
-                         :intervalTrainerState="currentState" 
+          <answer-button :intervalName=" 'm2' "
                          v-on:click.native="send('CLICK', $event)"></answer-button>
-          <answer-button :intervalName=" 'M2' " 
-                         :intervalTrainerState="currentState" 
+          <answer-button :intervalName=" 'M2' "
                          v-on:click.native="send('CLICK', $event)"></answer-button>
-          <answer-button :intervalName=" 'm3' " 
-                         :intervalTrainerState="currentState" 
+          <answer-button :intervalName=" 'm3' "
                          v-on:click.native="send('CLICK', $event)"></answer-button>
-          <answer-button :intervalName=" 'M3' " 
-                         :intervalTrainerState="currentState" 
+          <answer-button :intervalName=" 'M3' "
                          v-on:click.native="send('CLICK', $event)"></answer-button>
-          <answer-button :intervalName=" 'P4' " 
-                         :intervalTrainerState="currentState" 
+          <answer-button :intervalName=" 'P4' "
                          v-on:click.native="send('CLICK', $event)"></answer-button>
-          <answer-button :intervalName=" 'Tritone' " 
-                         :intervalTrainerState="currentState" 
+          <answer-button :intervalName=" 'Tritone' "
                          v-on:click.native="send('CLICK', $event)"></answer-button>
-          <answer-button :intervalName=" 'P5' " 
-                         :intervalTrainerState="currentState" 
+          <answer-button :intervalName=" 'P5' "  
                          v-on:click.native="send('CLICK', $event)"></answer-button>
-          <answer-button :intervalName=" 'm6' " 
-                         :intervalTrainerState="currentState" 
+          <answer-button :intervalName=" 'm6' "  
                          v-on:click.native="send('CLICK', $event)"></answer-button>
-          <answer-button :intervalName=" 'M6' " 
-                         :intervalTrainerState="currentState" 
+          <answer-button :intervalName=" 'M6' "  
                          v-on:click.native="send('CLICK', $event)"></answer-button>
-          <answer-button :intervalName=" 'm7' " 
-                         :intervalTrainerState="currentState" 
+          <answer-button :intervalName=" 'm7' "  
                          v-on:click.native="send('CLICK', $event)"></answer-button>
-          <answer-button :intervalName=" 'M7' " 
-                         :intervalTrainerState="currentState" 
+          <answer-button :intervalName=" 'M7' "
                          v-on:click.native="send('CLICK', $event)"></answer-button>
-          <answer-button :intervalName=" 'Octave' " 
-                         :intervalTrainerState="currentState" 
+          <answer-button :intervalName=" 'Octave' "
                          v-on:click.native="send('CLICK', $event)"></answer-button>
         </div>
       </div>
     </div>
-    <Footer :intervalTrainerState="currentState"></Footer>
+    <Footer></Footer>
   </div>
 </template>
 
@@ -66,9 +53,7 @@ export default {
   components: { PlayButton, AnswerButton, Footer },
   created() {
     this.quizService.onTransition(state=> {
-      this.currentState = state;
       this.setState(state);
-      this.context = state.context;
     }).start();
   },
   computed: {
@@ -79,8 +64,6 @@ export default {
   data() {
     return {
       quizService: interpret(quizMachine),
-      currentState: quizMachine.initialState,
-      context: quizMachine.context,
     }
   },
   methods: {

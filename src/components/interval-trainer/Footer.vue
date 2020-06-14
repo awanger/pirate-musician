@@ -2,7 +2,7 @@
   <footer class="footer">
     <div class="container">
       <img id="settings" src="@/assets/icons/cog-solid.svg" alt="Speaker icon here">
-      <action-button v-on:click.native="send('CLICK', $event)" :intervalTrainerState="intervalTrainerState"/>
+      <action-button v-on:click.native="send('CLICK', $event)"/>
     </div>
   </footer>
 </template>
@@ -11,30 +11,26 @@
 
 <script>
 import ActionButton from "@/components/interval-trainer/ActionButton";
-
+import { getters, mutations, actions } from '@/store/store.js';
 
 export default {
   name: "Footer",
   components: {
     ActionButton
   },
+  computed: {
+    getCurrentState() {
+      return getters.state;
+    }
+  },
   data() {
     return {
     }
   },
-  props: {
-    intervalTrainerState: Object
-  },
-  watch: {
-    intervalTrainerState: (state)=> {
-      console.log('current intervaltrainerstate:', state);
-      // console.log(this.intervalTrainerState);
-    }
-  },
-  computed: {
-
+  methods: {
+    ...mutations,
+    ...actions
   }
-
 }
 </script>
 

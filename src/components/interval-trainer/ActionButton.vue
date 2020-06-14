@@ -1,13 +1,12 @@
 <template>
-  <button class="btn btn-action" v-bind:disabled="intervalTrainerState.matches('displayQuestion')">
-    <div v-if="getCurrentState.matches('checked') || intervalTrainerState.matches('displayQuestion') ">
+  <button class="btn btn-action" v-bind:disabled="getCurrentState().matches('displayQuestion')">
+    <div v-if="getCurrentState().matches('checked') || getCurrentState().matches('displayQuestion') ">
       Check
-      {{ getCurrentState() }}
     </div>
-    <div v-if="intervalTrainerState.matches('correct')">
+    <div v-if="getCurrentState().matches('correct')">
       Continue
     </div>
-    <div v-if="intervalTrainerState.matches('wrong')">
+    <div v-if="getCurrentState().matches('wrong')">
       Try Again
     </div>
   </button>
@@ -15,7 +14,6 @@
 
 
 <script>
-
 import { getters, mutations, actions } from '@/store/store.js';
 
 export default {
@@ -27,23 +25,13 @@ export default {
   },
   data() {
     return {
-      // isDisabled: !this.intervalTrainerState.matches('checked')
+      // isDisabled: !this.getCurrentState().matches('checked')
     }
   },
   methods: {
     ...mutations,
     ...actions
-  },
-  props: {
-    intervalTrainerState: Object
-  },
-  watch: {
-    intervalTrainerState: (state)=> {
-      console.log('current intervaltrainerstate:', state);
-      // console.log(this.intervalTrainerState);
-    }
-  },
-
+  }
 }
 </script>
 

@@ -5,6 +5,9 @@
 
 
 <script>
+import { getters } from '@/store/store.js';
+
+
 export default {
   name: "AnswerButton",
   data() {
@@ -12,18 +15,14 @@ export default {
     }
   },
   props: {
-    intervalTrainerState: Object,
     intervalName: String
   },
-  watch: {
-    intervalTrainerState: (state)=> {
-      console.log('current intervaltrainerstate:', state);
-      // console.log(this.intervalTrainerState);
-    }
-  },
   computed: {
+    getCurrentState() {
+      return getters.state;
+    },
     isSelected() {
-      return this.intervalName === this.intervalTrainerState.context.selectedAnswer;
+      return this.intervalName === this.getCurrentState().context.selectedAnswer;
     }
   }
 
