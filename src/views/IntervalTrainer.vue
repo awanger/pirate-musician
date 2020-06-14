@@ -58,6 +58,7 @@ import PlayButton from "@/components/interval-trainer/PlayButton";
 import AnswerButton from "@/components/interval-trainer/AnswerButton";
 import Footer from "@/components/interval-trainer/Footer";
 
+import { getters, mutations, actions } from '@/store/store.js';
 import { interpret } from 'xstate';
 import quizMachine from "@/machine";
 
@@ -66,8 +67,14 @@ export default {
   created() {
     this.quizService.onTransition(state=> {
       this.currentState = state;
+      this.setState(state);
       this.context = state.context;
     }).start();
+  },
+  computed: {
+    getCurrentState() {
+      return getters.state;
+    }
   },
   data() {
     return {
@@ -84,7 +91,9 @@ export default {
       }
       // console.log(nativeEvent.target.dataset.interval);
       this.quizService.send(eventObj);
-    }
+    },
+    setState: mutations.setState,
+    ...actions
   }
 }
 </script>
