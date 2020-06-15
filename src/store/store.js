@@ -1,11 +1,16 @@
 import Vue from 'vue';
+import { interpret } from 'xstate';
+import quizMachine from "@/machine";
+
 
 const state = Vue.observable({ // this is the magic
-    currentState: Object
+  currentState: Object,
+  quizService: interpret(quizMachine)
 });
 
 export const getters = {
-    state: () => state.currentState
+  state: () => state.currentState,
+  quizService: state.quizService // why isn't this a function as well
 }
 
 export const mutations = {
