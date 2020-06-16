@@ -4,9 +4,7 @@ import { Machine, assign } from 'xstate';
 // const isCorrect = ({ age }) => age >= 18;
 // const isWrong = ({ age }) => age < 18;  
 const quizCompleted = ({questionsRemaining}) => questionsRemaining === 0;
-const fromActionButton = (context, event) => {
-  console.log(context)
-  console.log(event.selectedButton.target.parentNode.className)
+const fromActionButton = (_, event) => {
   return event.selectedButton.target.parentNode.className === 'btn btn-action';
 }
   

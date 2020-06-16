@@ -3,8 +3,7 @@
     <div>current state: {{ getCurrentState().value }}</div>
     <div>{{ getCurrentState().context }}</div>
     <div id='question-display'>
-      <play-button />
-      <button v-on:click="play"></button>
+      <play-button v-on:click.native="play"/>
       <div>
         <h1 class="question">What interval do you hear?</h1>
         <div class="multiple-choice-grid">
@@ -47,7 +46,9 @@ import AnswerButton from "@/components/interval-trainer/AnswerButton";
 import Footer from "@/components/interval-trainer/Footer";
 
 import { getters, mutations } from '@/store/store.js';
-import { player, TWINKLE_TWINKLE } from "@/plugins/magenta";
+import questions from '@/store/questions'
+import { player } from "@/plugins/magenta";
+console.log(questions);
 // import { interpret } from 'xstate';
 // import quizMachine from "@/machine";
 
@@ -78,7 +79,7 @@ export default {
     },
     setState: mutations.setState,
     play() {
-      player.start(TWINKLE_TWINKLE)
+      player.start(questions[0]);
     }
   }
 }
