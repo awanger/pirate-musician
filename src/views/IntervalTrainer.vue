@@ -4,6 +4,7 @@
     <div>{{ getCurrentState().context }}</div>
     <div id='question-display'>
       <play-button />
+      <button v-on:click="play"></button>
       <div>
         <h1 class="question">What interval do you hear?</h1>
         <div class="multiple-choice-grid">
@@ -46,6 +47,7 @@ import AnswerButton from "@/components/interval-trainer/AnswerButton";
 import Footer from "@/components/interval-trainer/Footer";
 
 import { getters, mutations } from '@/store/store.js';
+import { player, TWINKLE_TWINKLE } from "@/plugins/magenta";
 // import { interpret } from 'xstate';
 // import quizMachine from "@/machine";
 
@@ -74,7 +76,10 @@ export default {
       // console.log(nativeEvent.target.dataset.interval);
       getters.quizService.send(eventObj);
     },
-    setState: mutations.setState
+    setState: mutations.setState,
+    play() {
+      player.start(TWINKLE_TWINKLE)
+    }
   }
 }
 </script>
