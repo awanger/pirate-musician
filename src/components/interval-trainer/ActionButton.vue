@@ -1,5 +1,5 @@
 <template>
-  <button class="btn btn-action" v-bind:disabled="getCurrentState().matches('displayQuestion')">
+  <button v-on:click="send('CLICK', $event)" class="btn btn-action" v-bind:disabled="getCurrentState().matches('displayQuestion')">
     <div v-if="getCurrentState().matches('checked') || getCurrentState().matches('displayQuestion') ">
       Check
     </div>
@@ -30,7 +30,14 @@ export default {
   },
   methods: {
     ...mutations,
-    ...actions
+    ...actions,
+    send(event, nativeEvent) {
+      const eventObj = {
+        type: event,
+        selectedButton: nativeEvent
+      }
+      getters.quizService.send(eventObj);
+    }
   }
 }
 </script>

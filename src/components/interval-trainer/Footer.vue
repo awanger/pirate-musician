@@ -2,7 +2,7 @@
   <footer class="footer">
     <div class="container">
       <img id="settings" src="@/assets/icons/cog-solid.svg" alt="Speaker icon here">
-      <action-button v-on:click.native="send('CLICK', $event)"/>
+      <action-button v-on:click="send('CLICK', $event)"/>
     </div>
   </footer>
 </template>
@@ -29,11 +29,18 @@ export default {
   },
   methods: {
     ...mutations,
-    ...actions
+    ...actions,
+    send(event, nativeEvent) {
+      const eventObj = {
+        type: event,
+        selectedButton: nativeEvent
+      }
+      console.log(nativeEvent.target.dataset.interval);
+      getters.quizService.send(eventObj);
+    },
   }
 }
 </script>
-
 
 
 <style lang="scss" scoped>

@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import { interpret } from 'xstate';
-import quizMachine from "@/machine";
+import quizMachine from "../machine.js"; // wish i could use the @ symbol but cypress doesn't like it
 
 
 const state = Vue.observable({ // this is the magic
