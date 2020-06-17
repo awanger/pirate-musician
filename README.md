@@ -24,6 +24,8 @@ Will be adding a Firebase link soon
 * [Magenta](https://magenta.tensorflow.org) - Used to generate tones
 * [Xstate](https://xstate.js.org/) - The flow of the exercises are controlled by a finite state machine created using this library
 * [Drunken Parrot UI Kit](https://ui8.net/product/drunken-parrot-ui-kit-free) - used this kit to design the UI
+* [Cypress](https://www.cypress.io/) - automated testing framework
+
 
 
 ## Authors
