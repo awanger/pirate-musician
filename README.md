@@ -21,6 +21,7 @@ Will be adding a Firebase link soon
 
 ## Future Features
 
+* Add responsive design and native mobile
 * Add ability to change various settings during the exercises (e.g. difficulty level, playback tempo, etc.)
 * Add pitch recognition module
 * Add melodic dictation module (listener is played a melody and then they have to write it down)
