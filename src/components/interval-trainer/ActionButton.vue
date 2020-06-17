@@ -25,7 +25,6 @@ export default {
   },
   data() {
     return {
-      // isDisabled: !this.getCurrentState().matches('checked')
     }
   },
   methods: {

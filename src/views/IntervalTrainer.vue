@@ -48,13 +48,15 @@ import Footer from "@/components/interval-trainer/Footer";
 import { getters, mutations } from '@/store/store.js';
 import questions from '@/store/questions'
 import { player } from "@/plugins/magenta";
-console.log(questions);
+
+
 // import { interpret } from 'xstate';
 // import quizMachine from "@/machine";
 
 export default {
   components: { PlayButton, AnswerButton, Footer },
   created() {
+    this.play();
     getters.quizService.onTransition(state=> {
       this.setState(state); 
     }).start();
@@ -79,7 +81,7 @@ export default {
     },
     setState: mutations.setState,
     play() {
-      player.start(questions[0]);
+      player.start(questions[0]); // currentQuestionIndex
     }
   }
 }

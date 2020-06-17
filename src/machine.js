@@ -14,8 +14,7 @@ const quizMachine = Machine({
   context: {
     currentQuestionIndex: 0,
     selectedAnswer: null,
-    questions: [],
-    count: 0
+    questions: []
   },
   initial: 'loading',
   states: {
