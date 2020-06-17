@@ -2,6 +2,11 @@
 
 A music education platform that provides tutorials and exercises for ear training and music theory. One of the most basic exercises is interval identification, where two different tones are played and the listener has to identify the amount of distance between them.
 
+## Concept Sketches
+
+![image]
+(https://user-images.githubusercontent.com/9373469/84924035-03968300-b096-11ea-9f83-6f0f8b745b7e.png)
+
 ## Demo
 
 Will be adding a Firebase link soon
