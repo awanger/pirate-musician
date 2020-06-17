@@ -21,6 +21,7 @@ Will be adding a Firebase link soon
 ## Built With
 
 * [Vue](https://vuejs.org/) - The web framework used
+* [7-1 Sass Architecture](https://sass-guidelin.es/#the-7-1-pattern) - Organized the styling by following this styleguide
 * [Magenta](https://magenta.tensorflow.org) - Used to generate tones
 * [Xstate](https://xstate.js.org/) - The flow of the exercises are controlled by a finite state machine created using this library
 * [Drunken Parrot UI Kit](https://ui8.net/product/drunken-parrot-ui-kit-free) - used this kit to design the UI
