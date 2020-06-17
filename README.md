@@ -4,8 +4,7 @@ A music education platform that provides tutorials and exercises for ear trainin
 
 ## Concept Sketches
 
-![image]
-(https://user-images.githubusercontent.com/9373469/84924035-03968300-b096-11ea-9f83-6f0f8b745b7e.png)
+![image](https://user-images.githubusercontent.com/9373469/84924035-03968300-b096-11ea-9f83-6f0f8b745b7e.png)
 
 ## Demo
 
