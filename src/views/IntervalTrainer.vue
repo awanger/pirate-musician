@@ -46,20 +46,16 @@ import AnswerButton from "@/components/interval-trainer/AnswerButton";
 import Footer from "@/components/interval-trainer/Footer";
 
 import { getters, mutations } from '@/store/store.js';
-import questions from '@/store/questions'
+import questions from '@/store/questions';
 import { player } from "@/plugins/magenta";
-
-
-// import { interpret } from 'xstate';
-// import quizMachine from "@/machine";
 
 export default {
   components: { PlayButton, AnswerButton, Footer },
   created() {
-    this.play();
     getters.quizService.onTransition(state=> {
       this.setState(state); 
     }).start();
+    this.play();
   },
   computed: {
     getCurrentState() {
@@ -68,6 +64,7 @@ export default {
   },
   data() {
     return {
+      questions: questions
     }
   },
   methods: {
@@ -81,7 +78,8 @@ export default {
     },
     setState: mutations.setState,
     play() {
-      player.start(questions[0]); // currentQuestionIndex
+      var currentQuestionIndex = this.getCurrentState().context.currentQuestionIndex;
+      player.start(this.questions[currentQuestionIndex]); // currentQuestionIndex
     }
   }
 }

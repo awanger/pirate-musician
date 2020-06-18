@@ -9,9 +9,9 @@ const state = Vue.observable({ // this is the magic
 });
 
 export const getters = {
-  state: () => state.currentState,
+  state: ()=>state.currentState,
   quizService: state.quizService // why isn't this a function as well
-}
+} 
 
 export const mutations = {
   setState: (val) => state.currentState = val
