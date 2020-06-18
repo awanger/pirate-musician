@@ -5,7 +5,8 @@ A music education platform that provides tutorials and exercises for ear trainin
 ## Concept Sketches
 
 Interval Identification exercise
-![image](https://user-images.githubusercontent.com/9373469/84924035-03968300-b096-11ea-9f83-6f0f8b745b7e.png)
+![image](https://user-images.githubusercontent.com/9373469/85071310-4a16db00-b185-11ea-9a04-4c322a6966ea.png)
+
 
 Settings modal
 ![image](https://user-images.githubusercontent.com/9373469/84924745-ff1e9a00-b096-11ea-8c88-1c77d31e81ab.png)
