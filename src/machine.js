@@ -8,6 +8,9 @@ const quizCompleted = ({questionsRemaining}) => questionsRemaining === 0;
 const fromActionButton = (_, event) => {
   return event.selectedButton.target.parentNode.className === 'btn btn-action';
 }
+const isCorrect = (context) => {
+  return context.selectedAnswer === context.currentQuestion.correctAnswer;
+}
   
 // create Interval Trainer machine
 const quizMachine = Machine({
@@ -49,7 +52,7 @@ const quizMachine = Machine({
     evaluate: {
       on: {
         '': [
-          { target: 'correct' },
+          { target: 'correct', cond: isCorrect },
           { target: 'wrong' }
         ]
       }
@@ -67,8 +70,8 @@ const quizMachine = Machine({
 },
 {
   actions: {
-    nextQuestion: assign( { currentQuestionIndex: context => context.currentQuestionIndex + 1 }),
     loadQuestion: assign({ currentQuestion: context => questions[context.currentQuestionIndex] }),
+    nextQuestion: assign( { currentQuestionIndex: context => context.currentQuestionIndex + 1 }),
   }
 });
 
