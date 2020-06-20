@@ -46,14 +46,13 @@ import AnswerButton from "@/components/interval-trainer/AnswerButton";
 import Footer from "@/components/interval-trainer/Footer";
 
 import { getters, mutations } from '@/store/store.js';
-import questions from '@/store/questions';
 import { player } from "@/plugins/magenta";
 
 export default {
   components: { PlayButton, AnswerButton, Footer },
   created() {
     getters.quizService.onTransition(state=> {
-      this.setState(state); 
+      this.setState(state);
     }).start();
     this.play();
   },
@@ -64,7 +63,6 @@ export default {
   },
   data() {
     return {
-      questions: questions
     }
   },
   methods: {
@@ -78,8 +76,8 @@ export default {
     },
     setState: mutations.setState,
     play() {
-      var currentQuestionIndex = this.getCurrentState().context.currentQuestionIndex;
-      player.start(this.questions[currentQuestionIndex]);
+      var currentQuestion = this.getCurrentState().context.currentQuestion; // not a fan that the current question is pulled every time play button is hit
+      player.start(currentQuestion);
     }
   }
 }

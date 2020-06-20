@@ -1,6 +1,7 @@
 import { Machine, assign } from 'xstate';
+import questions from '@/store/questions';
 
-// conditional guard
+// conditional guards
 // const isCorrect = ({ age }) => age >= 18;
 // const isWrong = ({ age }) => age < 18;  
 const quizCompleted = ({questionsRemaining}) => questionsRemaining === 0;
@@ -13,18 +14,20 @@ const quizMachine = Machine({
   id: 'quiz',
   context: {
     currentQuestionIndex: 0,
-    selectedAnswer: null,
-    questions: []
+    currentQuestion: null,
+    selectedAnswer: null
   },
-  initial: 'loading',
+  initial: 'displayQuestion',
   states: {
-    loading: {
+    newQuestion: {
+      entry: ['nextQuestion'],
       on: { '': [
             { target: 'complete', cond: quizCompleted},
             { target: 'displayQuestion' }
         ] }
     },
     displayQuestion: {
+      entry: ['loadQuestion'],
       on: { CLICK: { target: 'checked', 
                      actions: assign({ selectedAnswer: (context, event) => context.selectedAnswer = event.selectedButton.target.dataset.interval }), // assign selectedAnswer to the interval name
             }
@@ -52,7 +55,7 @@ const quizMachine = Machine({
       }
     },
     correct: {
-      on: { CLICK: 'loading' }
+      on: { CLICK: 'newQuestion' }
     },
     wrong: {
       on: { CLICK: 'displayQuestion' }
@@ -60,6 +63,12 @@ const quizMachine = Machine({
     complete: {
       type: 'final'
     }
+  }
+},
+{
+  actions: {
+    nextQuestion: assign( { currentQuestionIndex: context => context.currentQuestionIndex + 1 }),
+    loadQuestion: assign({ currentQuestion: context => questions[context.currentQuestionIndex] }),
   }
 });
 
