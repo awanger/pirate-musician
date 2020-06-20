@@ -42,9 +42,9 @@ class Question {
     const OCTAVE_RANGE = 12;
     const referencePitch = this.getRandomInteger(min_pitch, max_pitch)
 
-    var firstNote = new Note(referencePitch, 0.0, 2.0);
+    var firstNote = new Note(referencePitch, 0.0, 1.0);
     var secondNote = new Note(this.getRandomInteger(referencePitch-OCTAVE_RANGE, referencePitch+OCTAVE_RANGE),
-                              2.0, 4.0); // might get a unison and don't forget about tritone
+                              1.0, 2.0); // might get a unison and don't forget about tritone
 
     var interval = new Interval(firstNote, secondNote);
     return interval

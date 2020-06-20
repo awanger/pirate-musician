@@ -79,7 +79,7 @@ export default {
     setState: mutations.setState,
     play() {
       var currentQuestionIndex = this.getCurrentState().context.currentQuestionIndex;
-      player.start(this.questions[currentQuestionIndex]); // currentQuestionIndex
+      player.start(this.questions[currentQuestionIndex]);
     }
   }
 }
