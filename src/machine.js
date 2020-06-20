@@ -23,15 +23,15 @@ const quizMachine = Machine({
   initial: 'displayQuestion',
   states: {
     newQuestion: {
-      entry: ['nextQuestion'],
+      entry: ['nextQuestion', 'resetSelectedAnswer'],
       on: { '': [
             { target: 'complete', cond: quizCompleted},
             { target: 'displayQuestion' }
         ] }
     },
     displayQuestion: {
-      entry: ['loadQuestion'],
-      on: { CLICK: { target: 'checked', 
+      entry: ['loadQuestion', 'resetSelectedAnswer'],
+      on: { CLICK: { target: 'checked',
                      actions: assign({ selectedAnswer: (context, event) => context.selectedAnswer = event.selectedButton.target.dataset.interval }), // assign selectedAnswer to the interval name
             }
       }
@@ -72,6 +72,7 @@ const quizMachine = Machine({
   actions: {
     loadQuestion: assign({ currentQuestion: context => questions[context.currentQuestionIndex] }),
     nextQuestion: assign( { currentQuestionIndex: context => context.currentQuestionIndex + 1 }),
+    resetSelectedAnswer: assign( { selectedAnswer: context => context.selectedAnswer = null })
   }
 });
 

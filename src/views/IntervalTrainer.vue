@@ -53,8 +53,10 @@ export default {
   created() {
     getters.quizService.onTransition(state=> {
       this.setState(state);
+      if(this.getCurrentState().value === 'displayQuestion') {
+        this.play();
+      }
     }).start();
-    this.play();
   },
   computed: {
     getCurrentState() {
