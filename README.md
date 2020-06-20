@@ -1,24 +1,51 @@
-# pirate-musician
+# Pirate Musician
 
-## Project setup
-```
-npm install
-```
+A music education platform that provides tutorials and exercises for ear training and music theory. One of the most basic exercises is interval identification, where two different tones are played and the listener has to identify the amount of distance between them.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Concept Sketches
 
-### Compiles and minifies for production
-```
-npm run build
-```
+Interval Identification exercise
+![image](https://user-images.githubusercontent.com/9373469/85071310-4a16db00-b185-11ea-9a04-4c322a6966ea.png)
 
-### Lints and fixes files
-```
-npm run lint
-```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Settings modal
+![image](https://user-images.githubusercontent.com/9373469/84924745-ff1e9a00-b096-11ea-8c88-1c77d31e81ab.png)
+
+
+## Demo
+
+Will be adding a Firebase link soon
+
+## Current Features
+
+* Interval identification exercises
+
+## Future Features
+
+* Add responsive design and native mobile
+* Add ability to change various settings during the exercises (e.g. difficulty level, playback tempo, etc.)
+* Add pitch recognition module
+* Add melodic dictation module (listener is played a melody and then they have to write it down)
+* Add chord recognition exercises
+* Add other stuff I haven't thot of yet
+
+## Built With
+
+* [Vue](https://vuejs.org/) - The web framework used
+* [7-1 Sass Architecture](https://sass-guidelin.es/#the-7-1-pattern) - Organized the styling by following this styleguide
+* [Magenta](https://magenta.tensorflow.org) - Used to generate tones
+* [Xstate](https://xstate.js.org/) - The flow of the exercises are controlled by a finite state machine created using this library
+* [Drunken Parrot UI Kit](https://ui8.net/product/drunken-parrot-ui-kit-free) - used this kit to design the UI
+* [Cypress](https://www.cypress.io/) - automated testing framework
+
+
+
+## Authors
+
+* **Alex Wang** - *Initial work* - [awanger](https://github.com/awanger)
+
+
+## Acknowledgments
+
+* UI design inspired by Duolingo
+* All other education apps
