@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer">
+  <footer class="footer" v-bind:class="{ correct: isCorrect, incorrect: isIncorrect }">
     <div class="container">
       <img id="settings" src="@/assets/icons/cog-solid.svg" alt="Speaker icon here">
       <action-button v-on:click="send('CLICK', $event)"/>
@@ -21,6 +21,12 @@ export default {
   computed: {
     getCurrentState() {
       return getters.state;
+    },
+    isCorrect() {
+      return this.getCurrentState().matches('correct');
+    },
+    isIncorrect() {
+      return this.getCurrentState().matches('incorrect');
     }
   },
   data() {
@@ -35,7 +41,6 @@ export default {
         type: event,
         selectedButton: nativeEvent
       }
-      console.log(nativeEvent.target.dataset.interval);
       getters.quizService.send(eventObj);
     },
   }
