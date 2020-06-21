@@ -41,6 +41,10 @@
       box-shadow: none;
       cursor: default;
     }
+    &.incorrect { // don't need a .correct class because there's no change in styling
+      background-color: $strawberry;
+      box-shadow: $shadow-offset $first-blood; // 3D button effect
+    }
   }
   
   &.btn-answer {

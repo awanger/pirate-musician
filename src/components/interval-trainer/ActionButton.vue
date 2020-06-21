@@ -1,12 +1,12 @@
 <template>
-  <button v-on:click="send('CLICK', $event)" class="btn btn-action" v-bind:disabled="getCurrentState().matches('displayQuestion')">
+  <button v-on:click="send('CLICK', $event)" class="btn btn-action" v-bind:class="{ incorrect: isIncorrect }" v-bind:disabled="getCurrentState().matches('displayQuestion')">
     <div v-if="getCurrentState().matches('checked') || getCurrentState().matches('displayQuestion') ">
       Check
     </div>
     <div v-if="getCurrentState().matches('correct')">
       Continue
     </div>
-    <div v-if="getCurrentState().matches('wrong')">
+    <div v-if="getCurrentState().matches('incorrect')">
       Try Again
     </div>
   </button>
@@ -21,6 +21,9 @@ export default {
   computed: {
     getCurrentState() {
       return getters.state;
+    },
+    isIncorrect() {
+      return this.getCurrentState().matches('incorrect');
     }
   },
   data() {

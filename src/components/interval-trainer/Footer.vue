@@ -55,20 +55,23 @@ export default {
     }
   }
 
-  .footer {
-    border-top: 2px solid #D6E1E5;
-    position: absolute;
-    left: 0px;
-    bottom: 0px;
-    width: 100%;
-    height: 20vh;
+  // .footer {
+  //   border-top: 2px solid #D6E1E5;
+  //   position: absolute;
+  //   left: 0px;
+  //   bottom: 0px;
+  //   width: 100%;
+  //   height: 20vh;
+  //   &.correct {
+  //     background-color: $edward-teach;
+  //   }
 
-    .container {
-      display: flex;
-      align-items: center; // vertically center
-      justify-content: space-between; // float the gear to the left and the action button to the right
-      height: 100%;
-    }
-  }
+  //   .container {
+  //     display: flex;
+  //     align-items: center; // vertically center
+  //     justify-content: space-between; // float the gear to the left and the action button to the right
+  //     height: 100%;
+  //   }
+  // }
   
 </style>

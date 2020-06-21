@@ -53,14 +53,14 @@ const quizMachine = Machine({
       on: {
         '': [
           { target: 'correct', cond: isCorrect },
-          { target: 'wrong' }
+          { target: 'incorrect' }
         ]
       }
     },
     correct: {
       on: { CLICK: 'newQuestion' }
     },
-    wrong: {
+    incorrect: {
       on: { CLICK: 'displayQuestion' }
     },
     complete: {
