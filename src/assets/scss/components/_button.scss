@@ -35,6 +35,9 @@
     font-size: 18px;
     font-weight: 500;
     @extend %press-down;
+    & > * {
+      pointer-events: none;
+    }
     &:disabled {
       opacity: 0.2;
       transform: none;

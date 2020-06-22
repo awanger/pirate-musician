@@ -2,7 +2,7 @@
   <footer class="footer" v-bind:class="{ correct: isCorrect, incorrect: isIncorrect }">
     <div class="container">
       <img id="settings" src="@/assets/icons/cog-solid.svg" alt="Speaker icon here">
-      <action-button v-on:click="send('CLICK', $event)"/>
+      <action-button v-on:click.native="send('CLICK', $event)"/>
     </div>
   </footer>
 </template>

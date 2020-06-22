@@ -6,7 +6,7 @@ import questions from '@/store/questions';
 // const isWrong = ({ age }) => age < 18;  
 const quizCompleted = ({questionsRemaining}) => questionsRemaining === 0;
 const fromActionButton = (_, event) => {
-  return event.selectedButton.target.parentNode.className === 'btn btn-action';
+  return event.selectedButton.target.className === 'btn btn-action';
 }
 const isCorrect = (context) => {
   return context.selectedAnswer === context.currentQuestion.correctAnswer;

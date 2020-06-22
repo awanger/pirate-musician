@@ -1,5 +1,5 @@
 <template>
-  <button v-on:click="send('CLICK', $event)" class="btn btn-action" v-bind:class="{ incorrect: isIncorrect }" v-bind:disabled="getCurrentState().matches('displayQuestion')">
+  <button class="btn btn-action" v-bind:class="{ incorrect: isIncorrect }" v-bind:disabled="getCurrentState().matches('displayQuestion')">
     <div v-if="getCurrentState().matches('checked') || getCurrentState().matches('displayQuestion') ">
       Check
     </div>

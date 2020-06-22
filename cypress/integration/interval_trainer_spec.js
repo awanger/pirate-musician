@@ -15,7 +15,8 @@ describe('Interval Trainer Tests', () => {
 
   it('clicking speaker button should play a sound', ()=> {
     cy.get('.btn-play').click().should('be.disabled')
-    // cy.get('.btn-play').should('not.be.disabled')
+    // after the sound finishes playing (waiting a few seconds), the button should be re-enabled
+    cy.get('.btn-play').should('not.be.disabled')
   })
 
   it('checking an answer enables action button', ()=> {
@@ -27,10 +28,10 @@ describe('Interval Trainer Tests', () => {
   it('getting correct answer should take you to the correct state', ()=> {
     var answerButtons = cy.get('.btn-answer')
     // answer buttons should be disabled so the user can't just click around like a madman
-    // action button should say continue
-    // footer should have the success class
+    cy.get('.btn-action').should('not.be.disabled')
+    cy.get('.footer').should('have.class', 'correct')
+
     // footer should tell the user 'good job' in a patronizing manner
-    // play button should not be disabled
     
     
   })
@@ -38,8 +39,9 @@ describe('Interval Trainer Tests', () => {
   it('getting incorrect answer should take you to the incorrect state', ()=> {
     var answerButtons = cy.get('.btn-answer')
     // answer buttons should be disabled so the user can't just click around like a madman
-    // action button should say continue
-    // footer should have the success class
+    cy.get('.btn-action').should('not.be.disabled')
+    cy.get('.btn-action').should('have.class', 'incorrect')
+    cy.get('.footer').should('have.class', 'incorrect')
     // footer should have a reprimanding comment (jk but it should tell the user they wrong)
     // play button should not be disabled
   
