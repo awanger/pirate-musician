@@ -64,7 +64,7 @@ class Question {
       9:"M6",
       10:"m7",
       11:"M7",
-      12:"P8" 
+      12:"Octave" 
     }
     
     var firstPitch = interval.getFirstNote().getPitch();
