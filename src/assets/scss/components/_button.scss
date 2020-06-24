@@ -26,6 +26,11 @@
     width: 198px;
     height: 198px;
     @extend %press-down;
+    &:disabled {
+      transform: none;
+      box-shadow: $shadow-offset $overboard; // 3D button effect
+      cursor: default;
+    }
   }
   
   &.btn-action {
