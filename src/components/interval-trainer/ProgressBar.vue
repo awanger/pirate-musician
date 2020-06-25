@@ -1,6 +1,11 @@
 <template>
-  <div class="bar-container">
-    <div class="fill" v-bind:style="{ width: (getCurrentState().context.currentQuestionIndex / getCurrentState().context.totalNumQuestions)*100 + '%' }"></div>
+  <div class="progress-bar">
+    <div class="bar-container">
+      <div class="fill" v-bind:style="{ width: (getCurrentState().context.currentQuestionIndex / getCurrentState().context.totalNumQuestions)*100 + '%' }"></div>
+    </div>
+    <div class="numerical-indicator">
+      {{ getCurrentState().context.currentQuestionIndex }}/{{ getCurrentState().context.totalNumQuestions }}
+    </div>
   </div>
 </template>
 
@@ -37,5 +42,4 @@ export default {
 
 <style lang="scss" scoped>
 
-  
 </style>
