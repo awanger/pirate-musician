@@ -3,7 +3,7 @@
     <div>current state: {{ getCurrentState().value }}</div>
     <div>{{ getCurrentState().context }}</div>
     <div id='question-display'>
-      <play-button v-on:click.native="play" v-bind:isPlaying="isPlaying"/>
+      <play-button v-on:click.native="play"/>
       <div>
         <h1 class="question">What interval do you hear?</h1>
         <div class="multiple-choice-grid">
@@ -65,7 +65,6 @@ export default {
   },
   data() {
     return {
-      isPlaying: false
     }
   },
   methods: {
@@ -78,20 +77,12 @@ export default {
       getters.quizService.send(eventObj);
     },
     setState: mutations.setState,
-    toggleIsPlaying() {
-      var currentQuestion = this.getCurrentState().context.currentQuestion;
-      var DurationInMilliseconds = currentQuestion.totalTime*1000; // totalTime is measured in seconds so we multiply by 1000 to get millseconds
-
-      this.isPlaying = true;
-      setTimeout(()=> {
-        this.isPlaying = false
-      }, DurationInMilliseconds)
-    },
     play() {
       var currentQuestion = this.getCurrentState().context.currentQuestion; // not a fan that the current question is pulled every time play button is hit
+      if(player.isPlaying()) {
+        player.stop();
+      }
       player.start(currentQuestion);
-      this.toggleIsPlaying();
-      // when player finishes, set isPlaying to false
     }
   }
 }

@@ -1,0 +1,3 @@
+[
+  { "notes": [ { "pitch": 80, "startTime": 0, "endTime": 1 }, { "pitch": 81, "startTime": 1, "endTime": 2 } ], "correctAnswer": "M7", "totalTime": 4 }
+]
