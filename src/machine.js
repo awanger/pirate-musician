@@ -4,7 +4,7 @@ import questions from '@/store/questions';
 // conditional guards
 // const isCorrect = ({ age }) => age >= 18;
 // const isWrong = ({ age }) => age < 18;  
-const quizCompleted = ({questionsRemaining}) => questionsRemaining === 0;
+const quizCompleted = (context) => context.currentQuestionIndex === context.totalNumQuestions;
 const fromActionButton = (_, event) => {
   return event.selectedButton.target.className === 'btn btn-action';
 }
@@ -17,6 +17,7 @@ const quizMachine = Machine({
   id: 'quiz',
   context: {
     currentQuestionIndex: 0,
+    totalNumQuestions: questions.length,
     currentQuestion: null,
     selectedAnswer: null
   },

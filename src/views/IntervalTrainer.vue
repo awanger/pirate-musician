@@ -2,6 +2,7 @@
   <div id="interval-trainer">
     <div>current state: {{ getCurrentState().value }}</div>
     <div>{{ getCurrentState().context }}</div>
+    <progress-bar></progress-bar>
     <div id='question-display'>
       <play-button v-on:click.native="play"/>
       <div>
@@ -41,6 +42,7 @@
 </template>
 
 <script>
+import ProgressBar from "@/components/interval-trainer/ProgressBar";
 import PlayButton from "@/components/interval-trainer/PlayButton";
 import AnswerButton from "@/components/interval-trainer/AnswerButton";
 import Footer from "@/components/interval-trainer/Footer";
@@ -49,7 +51,7 @@ import { getters, mutations } from '@/store/store.js';
 import { player } from "@/plugins/magenta";
 
 export default {
-  components: { PlayButton, AnswerButton, Footer },
+  components: { ProgressBar, PlayButton, AnswerButton, Footer },
   created() {
     getters.quizService.onTransition(state=> {
       this.setState(state);

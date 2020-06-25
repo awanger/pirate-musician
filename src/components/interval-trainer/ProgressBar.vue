@@ -1,6 +1,6 @@
 <template>
-  <div class="bar">
-    <span id="fill"></span>
+  <div class="bar-container">
+    <div class="fill" v-bind:style="{ width: (getCurrentState().context.currentQuestionIndex / getCurrentState().context.totalNumQuestions)*100 + '%' }"></div>
   </div>
 </template>
 
@@ -36,5 +36,6 @@ export default {
 
 
 <style lang="scss" scoped>
+
   
 </style>
