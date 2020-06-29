@@ -9,11 +9,10 @@ describe('Interval Trainer Tests', () => {
     cy.get('#nav > a:nth-child(2)').click() // click link to interval trainer
     cy.title().should('contain', 'Interval Trainer')
     cy.get('#settings').should('be.visible')
-    cy.get('.btn-play').should('be.visible').should('be.disabled')
   })
 
   it('clicking speaker button should play a sound', ()=> {
-    cy.get('.btn-play').should('not.be.disabled')
+    cy.get('.btn-play').click()
   })
 
   it('spamming the play button', ()=> {
@@ -30,27 +29,27 @@ describe('Interval Trainer Tests', () => {
     cy.get('.btn-action').should('not.be.disabled')
   })
 
-  it('getting correct answer should take you to the correct state', ()=> {
-    var answerButtons = cy.get('.btn-answer')
-    // answer buttons should be disabled so the user can't just click around like a madman
-    // cy.get('.btn-action').should('not.be.disabled')
-    // cy.get('.footer').should('have.class', 'correct')
+  // it('getting correct answer should take you to the correct state', ()=> {
+  //   var answerButtons = cy.get('.btn-answer')
+  //   // answer buttons should be disabled so the user can't just click around like a madman
+  //   // cy.get('.btn-action').should('not.be.disabled')
+  //   // cy.get('.footer').should('have.class', 'correct')
 
-    // footer should tell the user 'good job' in a patronizing manner
+  //   // footer should tell the user 'good job' in a patronizing manner
     
     
-  })
+  // })
 
-  it('getting incorrect answer should take you to the incorrect state', ()=> {
-    var answerButtons = cy.get('.btn-answer')
-    // answer buttons should be disabled so the user can't just click around like a madman
-    // cy.get('.btn-action').should('not.be.disabled')
-    // cy.get('.btn-action').should('have.class', 'incorrect')
-    // cy.get('.footer').should('have.class', 'incorrect')
-    // footer should have a reprimanding comment (jk but it should tell the user they wrong)
-    // play button should not be disabled
+  // it('getting incorrect answer should take you to the incorrect state', ()=> {
+  //   var answerButtons = cy.get('.btn-answer')
+  //   // answer buttons should be disabled so the user can't just click around like a madman
+  //   // cy.get('.btn-action').should('not.be.disabled')
+  //   // cy.get('.btn-action').should('have.class', 'incorrect')
+  //   // cy.get('.footer').should('have.class', 'incorrect')
+  //   // footer should have a reprimanding comment (jk but it should tell the user they wrong)
+  //   // play button should not be disabled
   
-  })
+  // })
 
 
 
