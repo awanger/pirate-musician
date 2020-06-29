@@ -4,8 +4,8 @@
 
 %press-down {
   &:active {
-    transform: translateY(6px);
-    box-shadow: 0px 0px;
+    transform: translateY(6px) !important;
+    box-shadow: 0px 0px !important;
   }
 }
 
@@ -39,7 +39,7 @@
     @extend %default-btn-size;
     font-size: 18px;
     font-weight: 500;
-    @extend %press-down;
+    @extend %press-down;  
     & > * {
       pointer-events: none;
     }

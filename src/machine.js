@@ -6,7 +6,8 @@ import questions from '@/store/questions';
 // const isWrong = ({ age }) => age < 18;  
 const quizCompleted = (context) => context.currentQuestionIndex === context.totalNumQuestions;
 const fromActionButton = (_, event) => {
-  return event.selectedButton.target.className === 'btn btn-action';
+  // console.log(event.selectedButton.target.classList);
+  return event.selectedButton.target.classList.contains('btn-action');
 }
 const isCorrect = (context) => {
   return context.selectedAnswer === context.currentQuestion.correctAnswer;
@@ -59,10 +60,10 @@ const quizMachine = Machine({
       }
     },
     correct: {
-      on: { CLICK: 'newQuestion' }
+      on: { CLICK: { target:'newQuestion', cond: fromActionButton } }
     },
     incorrect: {
-      on: { CLICK: 'displayQuestion' }
+      on: { CLICK: { target:'displayQuestion', cond: fromActionButton } }
     },
     complete: {
       type: 'final'
