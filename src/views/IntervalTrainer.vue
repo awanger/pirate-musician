@@ -1,7 +1,7 @@
 <template>
   <div id="interval-trainer">
-    <div>current state: {{ getCurrentState().value }}</div>
-    <div>{{ getCurrentState().context }}</div>
+    <!-- <div>current state: {{ getCurrentState().value }}</div>
+    <div>{{ getCurrentState().context }}</div> -->
     <progress-bar></progress-bar>
     <div id='question-display'>
       <play-button v-on:click.native="play"/>
@@ -92,6 +92,10 @@ export default {
 
 
 <style lang="scss" scoped>
+  #interval-trainer {
+    margin-top: 20px;
+  }
+
   #question-display {
     margin-top: 240px; // probably need to write additional media queries
     display: grid;
