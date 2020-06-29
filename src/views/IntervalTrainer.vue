@@ -93,7 +93,7 @@ export default {
 
 <style lang="scss" scoped>
   #interval-trainer {
-    margin-top: 20px;
+    margin-top: 40px;
   }
 
   #question-display {
