@@ -1,0 +1,15 @@
+.completion-screen {
+  display: flex;
+  height: 60vh;
+  align-items: center;
+  justify-content: center;
+  .dialog-box {
+    max-width: 750px;
+    h1 {
+      font-weight: 600;
+      font-size: 72px;
+      margin: 0;
+      color: #364347;
+    }
+  }
+}
