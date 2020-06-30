@@ -5,10 +5,10 @@
     <progress-bar></progress-bar>
     <div v-if="getCurrentState().matches('complete')" class='completion-screen'>
       <div class="dialog-box">
-        <h1>Good job! 🎉🎉</h1>
+        <h1>You made it! 🎉🎉</h1>
         <p>Would you like to play again with the same questions?</p>
-        <button class="btn">Yes, please!</button>
-        <button class="btn">No, get me out of here!</button>
+        <button class="btn btn-dialog">Yes, please!</button>
+        <!-- <button class="btn">No, get me out of here!</button> -->
       </div>
     </div>
     <div v-else id='question-display' >

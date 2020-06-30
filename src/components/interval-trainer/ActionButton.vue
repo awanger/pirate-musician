@@ -1,5 +1,5 @@
 <template>
-  <button class="btn btn-action" v-bind:class="{ incorrect: isIncorrect }" v-bind:disabled="getCurrentState().matches('displayQuestion')">
+  <button class="btn btn-action" v-bind:class="{ incorrect: isIncorrectOrCompleted }" v-bind:disabled="getCurrentState().matches('displayQuestion')">
     <div v-if="getCurrentState().matches('checked') || getCurrentState().matches('displayQuestion') ">
       Check
     </div>
@@ -8,6 +8,9 @@
     </div>
     <div v-if="getCurrentState().matches('incorrect')">
       Try Again
+    </div>
+    <div v-if="getCurrentState().matches('complete')">
+      Exit
     </div>
   </button>
 </template>
@@ -22,8 +25,8 @@ export default {
     getCurrentState() {
       return getters.state;
     },
-    isIncorrect() {
-      return this.getCurrentState().matches('incorrect');
+    isIncorrectOrCompleted() {
+      return this.getCurrentState().matches('incorrect') || this.getCurrentState().matches('complete');
     }
   },
   data() {
