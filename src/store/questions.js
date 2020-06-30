@@ -3,6 +3,7 @@ class Note {
     this.pitch = pitch;
     this.startTime = startTime;
     this.endTime = endTime;
+    this.velocity = 110;
   }
   getPitch() {
     return this.pitch;
@@ -81,9 +82,9 @@ const HIGHEST_PITCH = 76;
 for(var i=0; i<NUM_OF_QUESTIONS; i++) {
   let randomInterval = Question.generateRandomInterval(LOWEST_PITCH, HIGHEST_PITCH);
   let correctAnswer = Question.calcCorrectAnswer(randomInterval);
-  const question = new Question([randomInterval.getFirstNote(), randomInterval.getSecondNote()], correctAnswer, 4); // keep it like this for now
+  let question = new Question([randomInterval.getFirstNote(), randomInterval.getSecondNote()], correctAnswer, 4); // keep it like this for now
   questions.push(question);
 }
 
-// console.log(questions);
+console.log(questions);
 export default questions;
