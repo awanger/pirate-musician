@@ -75,9 +75,10 @@ class Question {
 }
 
 let questions = []
+let NUM_OF_QUESTIONS = 4;
 const LOWEST_PITCH = 40;
 const HIGHEST_PITCH = 76;
-for(var i=0; i<1; i++) {
+for(var i=0; i<NUM_OF_QUESTIONS; i++) {
   let randomInterval = Question.generateRandomInterval(LOWEST_PITCH, HIGHEST_PITCH);
   let correctAnswer = Question.calcCorrectAnswer(randomInterval);
   const question = new Question([randomInterval.getFirstNote(), randomInterval.getSecondNote()], correctAnswer, 4); // keep it like this for now
