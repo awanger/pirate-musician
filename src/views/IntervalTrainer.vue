@@ -3,7 +3,15 @@
     <!-- <div>current state: {{ getCurrentState().value }}</div>
     <div>{{ getCurrentState().context }}</div> -->
     <progress-bar></progress-bar>
-    <div id='question-display'>
+    <div v-if="getCurrentState().matches('complete')" class='completion-screen'>
+      <div class="dialog-box">
+        <h1>Good job! 🎉🎉</h1>
+        <p>Would you like to play again with the same questions?</p>
+        <button class="btn">Yes, please!</button>
+        <button class="btn">No, get me out of here!</button>
+      </div>
+    </div>
+    <div v-else id='question-display' >
       <play-button v-on:click.native="play"/>
       <div>
         <h1 class="question">What interval do you hear?</h1>
@@ -37,6 +45,9 @@
         </div>
       </div>
     </div>
+
+
+
     <Footer></Footer>
   </div>
 </template>
