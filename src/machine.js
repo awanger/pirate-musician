@@ -66,6 +66,7 @@ const quizMachine = Machine({
       on: { CLICK: { target:'displayQuestion', cond: fromActionButton } }
     },
     complete: {
+      entry: ['resetSelectedAnswer'],
       type: 'final'
     }
   }

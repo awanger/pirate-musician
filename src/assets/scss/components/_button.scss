@@ -48,6 +48,11 @@
       background-color: $strawberry;
       box-shadow: $shadow-offset $first-blood; // 3D button effect
     }
+    .exit {
+      color: $white;
+      text-decoration: none;
+      pointer-events: auto;
+    }
   }
   
   &.btn-answer {

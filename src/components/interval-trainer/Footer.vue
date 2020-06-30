@@ -2,7 +2,11 @@
   <footer class="footer" v-bind:class="{ correct: isCorrect, incorrect: isIncorrect }">
     <div class="container">
       <img id="settings" src="@/assets/icons/cog-solid.svg" alt="Speaker icon here">
-      <action-button v-on:click.native="send('CLICK', $event)"/>
+      <router-link v-if="getCurrentState().matches('complete')"
+                   to="/" class="exit">
+        <action-button v-on:click.native="send('CLICK', $event)"/>
+      </router-link>
+      <action-button v-else v-on:click.native="send('CLICK', $event)"/>
     </div>
   </footer>
 </template>
