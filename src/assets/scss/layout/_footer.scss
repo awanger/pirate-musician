@@ -3,10 +3,10 @@
 // -----------------------------------------------------------------------------
 .footer {
   border-top: 2px solid #D6E1E5;
-  position: absolute;
+  position: fixed;
   left: 0px;
   bottom: 0px;
-  width: 100%;
+  width: 100vw;
   height: 20vh;
   &.correct, &.incorrect {
     border: none;

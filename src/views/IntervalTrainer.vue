@@ -104,11 +104,16 @@ export default {
 
 <style lang="scss" scoped>
   #interval-trainer {
-    margin-top: 40px;
+    padding-top: 40px;
+    height: 56vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: visible;
   }
 
   #question-display {
-    margin-top: 240px; // probably need to write additional media queries
+    // margin-top: 240px; // probably need to write additional media queries
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 38px;
