@@ -13,7 +13,7 @@ const quizMachine = Machine({
   initial: 'displayQuestion',
   states: {
     newQuestion: {
-      entry: ['nextQuestion', 'resetSelectedAnswer'],
+      entry: ['resetSelectedAnswer'],
       on: { '': [
             { target: 'complete', cond: 'quizCompleted'},
             { target: 'displayQuestion' }
@@ -48,6 +48,7 @@ const quizMachine = Machine({
       }
     },
     correct: {
+      entry: ['incrementQuestionIndex'],
       on: { CLICK: { target:'newQuestion', cond: 'fromActionButton' } }
     },
     incorrect: {
@@ -62,7 +63,7 @@ const quizMachine = Machine({
 {
   actions: {
     loadQuestion: assign({ currentQuestion: context => questions[context.currentQuestionIndex] }),
-    nextQuestion: assign( { currentQuestionIndex: context => context.currentQuestionIndex + 1 }),
+    incrementQuestionIndex: assign( { currentQuestionIndex: context => context.currentQuestionIndex + 1 }),
     resetSelectedAnswer: assign( { selectedAnswer: context => context.selectedAnswer = null })
   },
   guards: {
