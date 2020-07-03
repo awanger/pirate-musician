@@ -60,6 +60,10 @@
     color: $black-flag;
     border: 2px solid $coral;
     @extend %default-btn-size;
+    &:hover {
+      background-color: $coral;
+      color: $white;
+    }
     &.selected {
       background-color: rgba($lagoon, 0.2);
       color: $lagoon;
