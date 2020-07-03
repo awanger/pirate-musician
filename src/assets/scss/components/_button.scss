@@ -2,11 +2,21 @@
 // This file contains all styles related to the button component.
 // -----------------------------------------------------------------------------
 
+%hover-effect {
+  transition: 0.3s filter ease-in-out; // hover out
+  &:hover { // hover in
+    filter: brightness(115%);
+  }
+}
+
+
 %press-down {
   &:active {
     transform: translateY(6px) !important;
     box-shadow: 0px 0px !important;
+    transition: none;
   }
+
 }
 
 %default-btn-size {
@@ -19,13 +29,15 @@
   border: none;
   border-radius: 10px;
   color: $white;
-  
+
   &.btn-play {
     background-color: $lagoon;
     box-shadow: $shadow-offset $overboard; // 3D button effect
     width: 198px;
     height: 198px;
     @extend %press-down;
+    @extend %hover-effect;
+
   }
   
   &.btn-action {
@@ -34,7 +46,8 @@
     @extend %default-btn-size;
     font-size: 18px;
     font-weight: 500;
-    @extend %press-down;  
+    @extend %press-down;
+    @extend %hover-effect;
     & > * {
       pointer-events: none;
     }
@@ -43,6 +56,7 @@
       transform: none;
       box-shadow: none;
       cursor: default;
+      filter: brightness(100%);
     }
     &.incorrect { // don't need a .correct class because there's no change in styling
       background-color: $strawberry;
@@ -60,9 +74,9 @@
     color: $black-flag;
     border: 2px solid $coral;
     @extend %default-btn-size;
+    transition: 0.15s ease-in-out;
     &:hover {
-      background-color: $coral;
-      color: $white;
+      background-color: rgba($coastal-surf, 0.5);
     }
     &.selected {
       background-color: rgba($lagoon, 0.2);
@@ -76,7 +90,8 @@
     box-shadow: $shadow-offset $dark-island; // 3D button effect
     width: 100%;
     height: 45px;
-    @extend %press-down; 
+    @extend %press-down;
+    @extend %hover-effect;
   }
 
   &:focus {
