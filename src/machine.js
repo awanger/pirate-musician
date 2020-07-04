@@ -22,7 +22,7 @@ const quizMachine = Machine({
     displayQuestion: {
       entry: ['loadQuestion', 'resetSelectedAnswer'],
       on: { CLICK: { target: 'checked',
-                     actions: assign({ selectedAnswer: (context, event) => context.selectedAnswer = event.selectedButton.target.dataset.interval }), // assign selectedAnswer to the interval name
+                     actions: assign({ selectedAnswer: (context, event) => context.selectedAnswer = event.selectedButton.target.dataset.interval }),
             }
       }
     },

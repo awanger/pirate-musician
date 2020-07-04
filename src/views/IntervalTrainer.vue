@@ -2,6 +2,7 @@
   <div id="interval-trainer">
     <!-- <div>current state: {{ getCurrentState().value }}</div>
     <div>{{ getCurrentState().context }}</div> -->
+    <settings-modal></settings-modal>
     <progress-bar></progress-bar>
     <div v-if="getCurrentState().matches('complete')" class='completion-screen'>
       <div class="dialog-box">
@@ -14,7 +15,7 @@
     <div v-else id='question-display' >
       <play-button v-on:click.native="play"/>
       <div>
-        <h1 class="question">What interval do you hear?</h1>
+        <h1 class="question">What interval do you hear, padawan?</h1>
         <div class="multiple-choice-grid">
           <answer-button :intervalName=" 'Unison' "  
                          v-on:click.native="send('CLICK', $event)"></answer-button>
@@ -45,9 +46,6 @@
         </div>
       </div>
     </div>
-
-
-
     <Footer></Footer>
   </div>
 </template>
@@ -56,13 +54,14 @@
 import ProgressBar from "@/components/interval-trainer/ProgressBar";
 import PlayButton from "@/components/interval-trainer/PlayButton";
 import AnswerButton from "@/components/interval-trainer/AnswerButton";
+import SettingsModal from "@/components/interval-trainer/SettingsModal";
 import Footer from "@/components/interval-trainer/Footer";
 
 import { getters, mutations } from '@/store/store.js';
 import { player } from "@/plugins/magenta";
 
 export default {
-  components: { ProgressBar, PlayButton, AnswerButton, Footer },
+  components: { ProgressBar, PlayButton, AnswerButton, SettingsModal, Footer },
   created() {
     getters.quizService.onTransition(state=> {
       this.setState(state);
@@ -118,11 +117,4 @@ export default {
     grid-template-columns: repeat(2, 1fr);
     column-gap: 38px;
   }
-
-  .multiple-choice-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-gap: 20px;
-  }
-
 </style>

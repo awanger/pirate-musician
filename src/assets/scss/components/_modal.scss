@@ -1,0 +1,25 @@
+.modal {
+  display: none; /* Hidden by default */
+  justify-content: center; 
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba($gunpowder, 0.8);
+  &.open {
+    display: flex;
+  }
+  .modal-box {
+    width: 100vh;
+    height: 80vh;
+    margin: 10vh 0;
+    background-color: $white;
+    border-radius: 20px;
+    .modal-container {
+      padding: 2% 5%;
+    }
+  }
+}
