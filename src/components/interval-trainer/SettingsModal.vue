@@ -1,7 +1,7 @@
 <template>
-  <div class="modal" v-bind:class="{ open: isOpen }">
+  <div class="modal" v-bind:class="{ open: isOpen }" >
     <div class="modal-box">
-      <img id="settings" src="@/assets/icons/times-solid.svg" alt="&times">
+      <img v-on:click="send('CLICK', $event)" id="close" src="@/assets/icons/times-solid.svg" alt="&times">
       <div class="modal-container">
         <div class="modal-header">
           <h1>Settings</h1>
@@ -41,10 +41,23 @@
 
 
 <script>
+import { getters, mutations, actions } from '@/store/store.js';
+
 export default {
   data() {
     return {
       isOpen: false
+    }
+  },
+  methods: {
+    ...mutations,
+    ...actions,
+    send(event, nativeEvent) {
+      const eventObj = {
+        type: event,
+        selectedButton: nativeEvent
+      }
+      getters.quizService.send(eventObj);
     }
   }
   
@@ -53,5 +66,8 @@ export default {
 
 
 <style lang="scss" scoped>
+  #close {
+    cursor: pointer;
+  }
 
 </style>
