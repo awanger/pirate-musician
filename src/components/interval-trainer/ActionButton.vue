@@ -1,5 +1,5 @@
 <template>
-  <button class="btn btn-action" v-bind:class="{ incorrect: isIncorrectOrCompleted }" v-bind:disabled="answerIsSelected">
+  <button class="btn btn-action" v-bind:class="{ incorrect: isIncorrectOrCompleted }" v-bind:disabled="!isEnabled">
     <div v-if="getCurrentState().matches('checked') || getCurrentState().matches('displayQuestion') || getCurrentState().matches('modal') ">
       Check
     </div>
@@ -28,12 +28,8 @@ export default {
     isIncorrectOrCompleted() {
       return this.getCurrentState().matches('incorrect') || this.getCurrentState().matches('complete');
     },
-    answerIsSelected() {
-      if(this.getCurrentState().context.selectedAnswer) {
-        return false;
-      } else {
-        return true;
-      }
+    isEnabled() {
+      return this.answerIsSelected() || this.getCurrentState().matches('complete');
     }
   },
   data() {
@@ -43,6 +39,9 @@ export default {
   methods: {
     ...mutations,
     ...actions,
+    answerIsSelected() {
+      return this.getCurrentState().context.selectedAnswer !== null;
+    },
     send(event, nativeEvent) {
       const eventObj = {
         type: event,
