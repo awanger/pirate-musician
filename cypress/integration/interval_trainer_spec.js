@@ -1,12 +1,11 @@
 describe('Interval Trainer Tests', () => {
   before(() => {
     // check if the import worked correctly
-    cy.visit('/') // change URL to match your dev URL
+    cy.visit('/interval-trainer') // change URL to match your dev URL
     cy.title().should('contain', 'Pirate Musician')
   })
 
   it('interval trainer successfully loads', () => {
-    cy.get('#nav > a:nth-child(2)').click() // click link to interval trainer
     cy.title().should('contain', 'Interval Trainer')
     cy.get('#settings').should('be.visible')
   })
