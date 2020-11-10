@@ -14,7 +14,7 @@ Settings modal
 
 ## Demo
 
-https://pirate-musician.web.app/
+https://pirate-musician.web.app/interval-trainer
 
 ## Current Features
 
