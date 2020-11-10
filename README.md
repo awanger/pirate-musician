@@ -14,7 +14,7 @@ Settings modal
 
 ## Demo
 
-Will be adding a Firebase link soon
+https://pirate-musician.web.app/
 
 ## Current Features
 
