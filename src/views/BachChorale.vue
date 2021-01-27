@@ -13,38 +13,8 @@
       </div>
     </div>
     <div v-else id='question-display' >
+      <div class="question">We've given you some notes as hints. Please fill in the rest of the melody.</div>
       <play-button v-on:click.native="play"/>
-      <div>
-        <h1 class="question">What interval do you hear, padawan?</h1>
-        <div class="multiple-choice-grid">
-          <answer-button :intervalName=" 'Unison' "  
-                         v-on:click.native="send('CLICK', $event)"></answer-button>
-          <answer-button :intervalName=" 'm2' "
-                         v-on:click.native="send('CLICK', $event)"></answer-button>
-          <answer-button :intervalName=" 'M2' "
-                         v-on:click.native="send('CLICK', $event)"></answer-button>
-          <answer-button :intervalName=" 'm3' "
-                         v-on:click.native="send('CLICK', $event)"></answer-button>
-          <answer-button :intervalName=" 'M3' "
-                         v-on:click.native="send('CLICK', $event)"></answer-button>
-          <answer-button :intervalName=" 'P4' "
-                         v-on:click.native="send('CLICK', $event)"></answer-button>
-          <answer-button :intervalName=" 'Tritone' "
-                         v-on:click.native="send('CLICK', $event)"></answer-button>
-          <answer-button :intervalName=" 'P5' "  
-                         v-on:click.native="send('CLICK', $event)"></answer-button>
-          <answer-button :intervalName=" 'm6' "  
-                         v-on:click.native="send('CLICK', $event)"></answer-button>
-          <answer-button :intervalName=" 'M6' "  
-                         v-on:click.native="send('CLICK', $event)"></answer-button>
-          <answer-button :intervalName=" 'm7' "  
-                         v-on:click.native="send('CLICK', $event)"></answer-button>
-          <answer-button :intervalName=" 'M7' "
-                         v-on:click.native="send('CLICK', $event)"></answer-button>
-          <answer-button :intervalName=" 'Octave' "
-                         v-on:click.native="send('CLICK', $event)"></answer-button>
-        </div>
-      </div>
     </div>
     <Footer></Footer>
   </div>
@@ -53,7 +23,7 @@
 <script>
 import ProgressBar from "@/components/interval-trainer/ProgressBar";
 import PlayButton from "@/components/interval-trainer/PlayButton";
-import AnswerButton from "@/components/interval-trainer/AnswerButton";
+// import AnswerButton from "@/components/interval-trainer/AnswerButton";
 import SettingsModal from "@/components/interval-trainer/SettingsModal";
 import Footer from "@/components/interval-trainer/Footer";
 
@@ -61,7 +31,7 @@ import { getters, mutations } from '@/store/store.js';
 import { player } from "@/plugins/magenta";
 
 export default {
-  components: { ProgressBar, PlayButton, AnswerButton, SettingsModal, Footer },
+  components: { ProgressBar, PlayButton, SettingsModal, Footer },
   created() {
     getters.quizService.onTransition(state=> {
       this.setState(state);
@@ -111,10 +81,12 @@ export default {
     overflow: visible;
   }
 
+  .question {
+  }
+
   #question-display {
     // margin-top: 240px; // probably need to write additional media queries
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: 38px;
+
   }
+  
 </style>
