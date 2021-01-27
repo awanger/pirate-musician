@@ -32,10 +32,11 @@
   background-color: $lagoon;
 
   &.btn-play {
-    background-color: $lagoon;
-    box-shadow: $shadow-offset $overboard; // 3D button effect
-    width: 198px;
-    height: 198px;
+    background-color: $treasure-island;
+    box-shadow: $shadow-offset $dark-island; // 3D button effect
+    width: 64px;
+    height: 64px;
+    @include flex-center; // center the play icon
     @extend %press-down;
     @extend %hover-effect;
 

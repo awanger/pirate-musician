@@ -14,6 +14,7 @@
     </div>
     <div v-else id='question-display' >
       <div class="question">We've given you some notes as hints. Please fill in the rest of the melody.</div>
+      <img src="" alt="Musical score goes here">
       <play-button v-on:click.native="play"/>
     </div>
     <Footer></Footer>

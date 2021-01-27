@@ -1,6 +1,6 @@
 <template>
   <button class="btn btn-play">
-    <img src="@/assets/icons/volume-up-solid.svg" alt="Speaker icon here">
+    <img src="@/assets/icons/play-solid.svg" alt="play icon here">
   </button>
 </template>
 
