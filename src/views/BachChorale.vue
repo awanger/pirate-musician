@@ -12,10 +12,10 @@
         <!-- <button class="btn">No, get me out of here!</button> -->
       </div>
     </div>
-    <div v-else id='question-display' >
+    <div v-else id='question-display'>
       <div class="question">We've given you some notes as hints. Please fill in the rest of the melody.</div>
-      <img src="" alt="Musical score goes here">
-      <play-button v-on:click.native="play"/>
+      <img id="music-score" src="@/assets/scores/bach_chorale.png" alt="Musical score goes here">
+      <play-button id="play-button" v-on:click.native="play"/>
     </div>
     <Footer></Footer>
   </div>
@@ -75,19 +75,37 @@ export default {
 <style lang="scss" scoped>
   #interval-trainer {
     padding-top: 40px;
-    height: 56vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    // height: 100vh;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: space-between;
     overflow: visible;
-  }
-
-  .question {
   }
 
   #question-display {
     // margin-top: 240px; // probably need to write additional media queries
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(2, 1fr);
 
   }
+
+  .question {
+    grid-column: 1/11;
+    grid-row: 1;
+  }
+
+  #music-score {
+    max-width: 100%;
+    grid-column: 1/10;
+    grid-row: 2;
+  }
+
+  #play-button {
+    grid-column: 10/11;
+    grid-row: 2;
+  }
+
+
   
 </style>
