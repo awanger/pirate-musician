@@ -14,8 +14,10 @@
     </div>
     <div v-else id='question-display'>
       <div class="question">We've given you some notes as hints. Please fill in the rest of the melody.</div>
-      <img id="music-score" src="@/assets/scores/bach_chorale.png" alt="Musical score goes here">
-      <play-button id="play-button" v-on:click.native="play"/>
+      <div class="music-display">
+        <img id="music-score" src="@/assets/scores/bach_chorale.png" alt="Musical score goes here">
+        <play-button id="play-button" v-on:click.native="play"/>
+      </div>
     </div>
     <Footer></Footer>
   </div>
@@ -83,27 +85,31 @@ export default {
   }
 
   #question-display {
-    // margin-top: 240px; // probably need to write additional media queries
+    margin-top: 50px; // probably need to write additional media queries
     display: grid;
     grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-
+    grid-template-rows: repeat(10, 1fr);
   }
 
   .question {
     grid-column: 1/11;
-    grid-row: 1;
+    grid-row: 1/2;
+  }
+
+  .music-display {
+    grid-column: 1/11;
+    grid-row: 2/11;
+    display: flex;
+    align-items: center;
   }
 
   #music-score {
-    max-width: 100%;
-    grid-column: 1/10;
-    grid-row: 2;
+    max-width: 90%;
   }
 
   #play-button {
-    grid-column: 10/11;
-    grid-row: 2;
+    max-width: 10%;
+    aspect-ratio: 1/1; // don't even know if this feature is available yet
   }
 
 
