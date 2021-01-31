@@ -18,6 +18,7 @@
         <img id="music-score" src="@/assets/scores/bach_chorale.png" alt="Musical score goes here">
         <play-button id="play-button" v-on:click.native="play"/>
       </div>
+      <show-button></show-button>
     </div>
     <Footer></Footer>
   </div>
@@ -26,7 +27,7 @@
 <script>
 import ProgressBar from "@/components/interval-trainer/ProgressBar";
 import PlayButton from "@/components/interval-trainer/PlayButton";
-// import AnswerButton from "@/components/interval-trainer/AnswerButton";
+import ShowButton from "@/components/ShowButton";
 import SettingsModal from "@/components/interval-trainer/SettingsModal";
 import Footer from "@/components/interval-trainer/Footer";
 
@@ -34,7 +35,7 @@ import { getters, mutations } from '@/store/store.js';
 import { player } from "@/plugins/magenta";
 
 export default {
-  components: { ProgressBar, PlayButton, SettingsModal, Footer },
+  components: { ProgressBar, PlayButton, ShowButton, SettingsModal, Footer },
   created() {
     getters.quizService.onTransition(state=> {
       this.setState(state);
@@ -98,18 +99,20 @@ export default {
 
   .music-display {
     grid-column: 1/11;
-    grid-row: 2/11;
+    grid-row: 2/9;
     display: flex;
     align-items: center;
+    #music-score {
+      max-width: 90%;
+    }
   }
 
-  #music-score {
-    max-width: 90%;
+  .btn-show {
+    grid-column: 5/6;
   }
 
   #play-button {
     max-width: 10%;
-    aspect-ratio: 1/1; // don't even know if this feature is available yet
   }
 
 

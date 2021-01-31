@@ -30,16 +30,26 @@
   border-radius: 10px;
   color: $white;
   background-color: $lagoon;
+  text-transform: uppercase;
 
   &.btn-play {
     background-color: $treasure-island;
     box-shadow: $shadow-offset $dark-island; // 3D button effect
-    width: 64px;
-    height: 64px;
+    width: 58px;
+    height: 58px;
     @include flex-center; // center the play icon
     @extend %press-down;
     @extend %hover-effect;
+  }
 
+  &.btn-show {
+    @extend %default-btn-size;
+    width: 200px;
+    font-size: 18px;
+    box-shadow: $shadow-offset $overboard;
+    @include flex-center;
+    @extend %press-down;
+    @extend %hover-effect;
   }
   
   &.btn-action {
