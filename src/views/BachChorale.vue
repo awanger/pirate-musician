@@ -40,7 +40,7 @@ export default {
     getters.quizService.onTransition(state=> {
       this.setState(state);
       if(this.getCurrentState().matches('displayQuestion')) {
-        this.play();
+        // this.play();
       }
     }).start();
   },
