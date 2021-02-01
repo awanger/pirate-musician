@@ -9,6 +9,15 @@
   align-items: center;
 }
 
+
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);  
+}
+
+
 /// Make a context based selector a little more friendly
 /// @author Hugo Giraudel
 /// @param {String} $context
@@ -17,4 +26,3 @@
     @content;
   }
 }
-

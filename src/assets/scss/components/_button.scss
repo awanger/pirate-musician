@@ -110,3 +110,18 @@
     outline: none;
   }
 }
+
+#settings {
+  width: auto;
+  height: auto;
+  max-width: 25px;
+  max-height: 25px;
+  cursor: pointer;
+  transition: transform .8s ease-in-out;
+  // @include flex-center;
+  // grid-column: 100/101;
+
+  &:hover{
+    transform: rotate(270deg);
+  }
+}
