@@ -26,6 +26,20 @@ const quizMachine = Machine({
                 target: 'modal',
                 cond: 'fromSettingsButton'
               },
+              {
+                target: 'showAnswer',
+                cond: 'fromToggleButton'
+              }
+            ]
+      }
+    },
+    showAnswer: {
+      // entry: ['loadQuestion', 'resetSelectedAnswer'],
+      on: { CLICK: [
+              {
+                target: 'modal',
+                cond: 'fromShowButton'
+              },
               { 
                 target: 'checked', actions: assign({ selectedAnswer: (context, event) => context.selectedAnswer = event.selectedButton.target.dataset.interval }),
               },
@@ -96,13 +110,19 @@ const quizMachine = Machine({
       return context.selectedAnswer === context.currentQuestion.correctAnswer;
     },
     fromActionButton: (_, event) => {
+      console.log('from the action button');
       // console.log(event.selectedButton.target.classList);
       return event.selectedButton.target.classList.contains('btn-action');
     },
     fromSettingsButton: (_, event) => {
-      console.log('hellooooooo');
-      console.log(event.selectedButton.target.id);
+      console.log('from the settings button');
+      // console.log(event.selectedButton.target.id);
       return event.selectedButton.target.id==='settings';
+    },
+    fromToggleButton: (_, event) => {
+      console.log('from the toggle button');
+      // console.log(event.selectedButton.classList);
+      return event.selectedButton.target.classList.contains('btn-show');
     },
     fromCloseButton: (_, event) => {
       console.log(event.selectedButton.target.id);

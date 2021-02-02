@@ -1,8 +1,6 @@
 <template>
-  <button class="btn btn-show">
-    <div>
+  <button class="btn btn-show" v-on:click="send('CLICK', $event)">
       Show Answer
-    </div>
   </button>
 </template>
 
@@ -16,12 +14,6 @@ export default {
     getCurrentState() {
       return getters.state;
     },
-    isIncorrectOrCompleted() {
-      return this.getCurrentState().matches('incorrect') || this.getCurrentState().matches('complete');
-    },
-    isEnabled() {
-      return this.answerIsSelected() || this.getCurrentState().matches('complete');
-    }
   },
   data() {
     return {
@@ -30,9 +22,6 @@ export default {
   methods: {
     ...mutations,
     ...actions,
-    answerIsSelected() {
-      return this.getCurrentState().context.selectedAnswer !== null;
-    },
     send(event, nativeEvent) {
       const eventObj = {
         type: event,
