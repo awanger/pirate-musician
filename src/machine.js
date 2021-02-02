@@ -38,11 +38,12 @@ const quizMachine = Machine({
       on: { CLICK: [
               {
                 target: 'modal',
-                cond: 'fromShowButton'
+                cond: 'fromSettingsButton'
               },
-              { 
-                target: 'checked', actions: assign({ selectedAnswer: (context, event) => context.selectedAnswer = event.selectedButton.target.dataset.interval }),
-              },
+              {
+                target: 'displayQuestion',
+                cond: 'fromToggleButton'
+              }
             ]
       }
     },
@@ -121,7 +122,6 @@ const quizMachine = Machine({
     },
     fromToggleButton: (_, event) => {
       console.log('from the toggle button');
-      // console.log(event.selectedButton.classList);
       return event.selectedButton.target.classList.contains('btn-show');
     },
     fromCloseButton: (_, event) => {

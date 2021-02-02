@@ -1,7 +1,10 @@
 <template>
-  <button class="btn btn-show" v-on:click="send('CLICK', $event)">
-      Show Answer
-  </button>
+    <button class="btn btn-show" v-on:click="send('CLICK', $event)" v-if="!getCurrentState().matches('showAnswer')">
+        Show Answer
+    </button>
+    <button class="btn btn-show" v-on:click="send('CLICK', $event)" v-else>
+        Hide Answer
+    </button>
 </template>
 
 
