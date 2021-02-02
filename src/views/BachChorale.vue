@@ -15,8 +15,12 @@
     <div v-else id='question-display'>
       <div class="question">We've given you some notes as hints. Please fill in the rest of the melody.</div>
       <div class="music-display">
-        <img class="music-score" src="@/assets/scores/bach_chorale.png" alt="Musical score goes here">
-        <!-- <img class="music-score" src="@/assets/scores/bach_chorale_ans.png" alt="Musical score goes here"> -->
+        <img v-if="!getCurrentState().matches('showAnswer')"
+             class="music-score" src="@/assets/scores/bach_chorale.png" 
+             alt="Musical score goes here">
+        <img v-else
+             class="music-score" src="@/assets/scores/bach_chorale_ans.png" 
+             alt="Musical score goes here">
         <play-button id="play-button" v-on:click.native="play"/>
       </div>
       <show-button></show-button>
