@@ -23,10 +23,6 @@ const quizMachine = Machine({
       entry: ['loadQuestion', 'resetSelectedAnswer'],
       on: { CLICK: [
               {
-                target: 'modal',
-                cond: 'fromSettingsButton'
-              },
-              {
                 target: 'showAnswer',
                 cond: 'fromToggleButton'
               }
@@ -36,10 +32,6 @@ const quizMachine = Machine({
     showAnswer: {
       // entry: ['loadQuestion', 'resetSelectedAnswer'],
       on: { CLICK: [
-              {
-                target: 'modal',
-                cond: 'fromSettingsButton'
-              },
               {
                 target: 'displayQuestion',
                 cond: 'fromToggleButton'
@@ -53,28 +45,6 @@ const quizMachine = Machine({
           { 
             target: 'evaluate', 
             cond: 'fromActionButton' // if the click event is from the action button, then evaluate the answer
-          },
-          {
-            target: 'modal',
-            cond: 'fromSettingsButton'
-          },
-          { 
-            target: 'checked',
-            actions: assign({ selectedAnswer: (context, event) => context.selectedAnswer = event.selectedButton.target.dataset.interval })
-          }
-        ]
-      }
-    },
-    modal: {
-      on: {
-        CLICK: [
-          {
-            target: 'checked',
-            cond: 'fromCloseButton'
-          },
-          {
-            target: 'displayQuestion',
-            cond: 'fromCloseButton'
           }
         ]
       }

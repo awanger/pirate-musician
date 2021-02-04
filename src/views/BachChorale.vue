@@ -21,11 +21,11 @@
         <img v-else
              class="music-score" src="@/assets/scores/bach_chorale_ans.png" 
              alt="Musical score goes here">
-        <play-button id="play-button" v-on:click.native="play"/>
+        <play-button id="play-button" v-on:click.native="play"/> 
       </div>
       <show-button></show-button>
     </div>
-    <Footer></Footer>
+    <Footer/>
   </div>
 </template>
 
@@ -37,7 +37,7 @@ import SettingsModal from "@/components/interval-trainer/SettingsModal";
 import Footer from "@/components/interval-trainer/Footer";
 
 import { getters, mutations } from '@/store/store.js';
-import { player } from "@/plugins/magenta";
+// import { player } from "@/plugins/magenta";
 
 export default {
   components: { ProgressBar, PlayButton, ShowButton, SettingsModal, Footer },
@@ -56,6 +56,8 @@ export default {
   },
   data() {
     return {
+      file_directory : "what's up dawg",
+      b : "another message"
     }
   },
   methods: {
@@ -69,11 +71,14 @@ export default {
     },
     setState: mutations.setState,
     play() {
-      var currentQuestion = this.getCurrentState().context.currentQuestion; // not a fan that the current question is pulled every time play button is hit
-      if(player.isPlaying()) {
-        player.stop();
-      }
-      player.start(currentQuestion);
+      // var currentQuestion = this.getCurrentState().context.currentQuestion; // not a fan that the current question is pulled every time play button is hit
+      // if(player.isPlaying()) {
+      //   player.stop();
+      // }
+      // player.start(currentQuestion);
+      var audio = new Audio(require('@/assets/audio/bwv255_4parts_4bars.mp3'));
+      console.log(audio);
+      audio.play();
     }
   }
 }
