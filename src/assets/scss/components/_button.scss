@@ -40,6 +40,10 @@
     @include flex-center; // center the play icon
     @extend %press-down;
     @extend %hover-effect;
+    &.btn-stop {
+      background-color: $strawberry;
+      box-shadow: $shadow-offset $first-blood;
+    }
   }
 
   &.btn-show {

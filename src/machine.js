@@ -8,12 +8,10 @@ const quizMachine = Machine({
     currentQuestionIndex: 0,
     totalNumQuestions: questions.length,
     currentQuestion: null,
-    selectedAnswer: null
   },
   initial: 'displayQuestion',
   states: {
     newQuestion: {
-      entry: ['resetSelectedAnswer'],
       on: { '': [
             { target: 'complete', cond: 'quizCompleted'},
             { target: 'displayQuestion' }
@@ -25,6 +23,10 @@ const quizMachine = Machine({
               {
                 target: 'showAnswer',
                 cond: 'fromToggleButton'
+              },
+              {
+                target: 'isPlaying',
+                cond: 'fromPlayButton'
               }
             ]
       }
@@ -39,30 +41,8 @@ const quizMachine = Machine({
             ]
       }
     },
-    checked: {
-      on: {
-        CLICK: [
-          { 
-            target: 'evaluate', 
-            cond: 'fromActionButton' // if the click event is from the action button, then evaluate the answer
-          }
-        ]
-      }
-    },
-    evaluate: {
-      on: {
-        '': [
-          { target: 'correct', cond: 'isCorrect' },
-          { target: 'incorrect' }
-        ]
-      }
-    },
-    correct: {
-      entry: ['incrementQuestionIndex'],
-      on: { CLICK: { target:'newQuestion', cond: 'fromActionButton' } }
-    },
-    incorrect: {
-      on: { CLICK: { target:'displayQuestion', cond: 'fromActionButton' } }
+    isPlaying: {
+      
     },
     complete: {
       entry: ['resetSelectedAnswer'],
@@ -84,6 +64,10 @@ const quizMachine = Machine({
       console.log('from the action button');
       // console.log(event.selectedButton.target.classList);
       return event.selectedButton.target.classList.contains('btn-action');
+    },
+    fromPlayButton: (_, event) => {
+      console.log('from the play button');
+      return event.selectedButton.target.id==='play-button';
     },
     fromSettingsButton: (_, event) => {
       console.log('from the settings button');

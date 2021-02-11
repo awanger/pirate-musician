@@ -21,7 +21,7 @@
         <img v-else
              class="music-score" src="@/assets/scores/bach_chorale_ans.png" 
              alt="Musical score goes here">
-        <play-button id="play-button" v-on:click.native="play"/> 
+        <play-button v-on:click.native="play"/>
       </div>
       <show-button></show-button>
     </div>
@@ -77,8 +77,13 @@ export default {
       // }
       // player.start(currentQuestion);
       var audio = new Audio(require('@/assets/audio/bwv255_4parts_4bars.mp3'));
+      audio.id = 'something'
       console.log(audio);
-      audio.play();
+      document.querySelector('#app').appendChild(audio);
+
+      let selectedAudio = document.querySelector('#something');
+      selectedAudio.play();
+      // audio.play();
     }
   }
 }
@@ -121,9 +126,7 @@ export default {
     grid-column: 5/6;
   }
 
-  #play-button {
-    max-width: 10%;
-  }
+
 
 
   
