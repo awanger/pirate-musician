@@ -42,7 +42,17 @@ const quizMachine = Machine({
       }
     },
     isPlaying: {
-      
+      on: { CLICK: [
+        {
+          target: 'showAnswer',
+          cond: 'fromToggleButton'
+        },
+        {
+          target: 'isPlaying',
+          cond: 'fromPlayButton'
+        }
+          ]
+        }
     },
     complete: {
       entry: ['resetSelectedAnswer'],
