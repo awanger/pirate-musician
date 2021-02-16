@@ -42,7 +42,7 @@ const quizMachine = Machine({
       }
     },
     isPlaying: {
-      
+
     },
     complete: {
       entry: ['resetSelectedAnswer'],
