@@ -9,50 +9,40 @@ const quizMachine = Machine({
     totalNumQuestions: questions.length,
     currentQuestion: null,
   },
-  initial: 'displayQuestion',
+  initial: 'display',
   states: {
     newQuestion: {
       on: { '': [
             { target: 'complete', cond: 'quizCompleted'},
-            { target: 'displayQuestion' }
+            { target: 'display' }
         ] }
     },
-    displayQuestion: {
+    display: {
       entry: ['loadQuestion', 'resetSelectedAnswer'],
-      on: { CLICK: [
-              {
-                target: 'showAnswer',
-                cond: 'fromToggleButton'
-              },
-              {
-                target: 'isPlaying',
-                cond: 'fromPlayButton'
-              }
-            ]
-      }
-    },
-    showAnswer: {
-      // entry: ['loadQuestion', 'resetSelectedAnswer'],
-      on: { CLICK: [
-              {
-                target: 'displayQuestion',
-                cond: 'fromToggleButton'
-              }
-            ]
+      initial: 'displayQuestion',
+      states: {
+        displayQuestion: {
+          on: { CLICK: [
+            {
+              target: 'displayAnswer',
+              cond: 'fromToggleButton'
+            }
+              ]
+          },
+        },
+        displayAnswer: {
+          on: { CLICK: [
+            {
+              target: 'displayQuestion',
+              cond: 'fromToggleButton'
+            }
+                ]
+          }
+        }
       }
     },
     isPlaying: {
-      on: { CLICK: [
-        {
-          target: 'showAnswer',
-          cond: 'fromToggleButton'
-        },
-        {
-          target: 'isPlaying',
-          cond: 'fromPlayButton'
-        }
-          ]
-        }
+      
     },
     complete: {
       entry: ['resetSelectedAnswer'],
@@ -93,8 +83,8 @@ const quizMachine = Machine({
       return event.selectedButton.target.id==='close';
     },
     quizCompleted: (context) => { return context.currentQuestionIndex === context.totalNumQuestions; },
-    previousStateIsDisplayQuestion: (ctx, e, { state }) =>  { 
-      return state.history.matches('displayQuestion');
+    previousStateIsdisplay: (ctx, e, { state }) =>  { 
+      return state.history.matches('display');
     },
     previousStateIsChecked: (ctx, e, { state }) =>  { 
       return state.history.matches('checked');
