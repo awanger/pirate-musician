@@ -22,27 +22,24 @@ const quizMachine = Machine({
       initial: 'displayQuestion',
       states: {
         displayQuestion: {
-          on: { CLICK: [
-            {
-              target: 'displayAnswer',
-              cond: 'fromToggleButton'
-            }
-              ]
+          on: { CLICK: [{ target: 'displayAnswer', cond: 'fromToggleButton'}, 
+                        { target: 'isPlayingQuestion', cond: 'fromPlayButton'}]
           },
         },
+        isPlayingQuestion: {
+          on: { CLICK: [{ target: 'displayAnswer', cond: 'fromToggleButton' }, 
+                        { target: 'displayQuestion', cond: 'fromPlayButton' }] }
+        },
         displayAnswer: {
-          on: { CLICK: [
-            {
-              target: 'displayQuestion',
-              cond: 'fromToggleButton'
-            }
-                ]
+          on: { CLICK: [{ target: 'displayQuestion', cond: 'fromToggleButton'}, 
+                        { target: 'isPlayingAnswer', cond: 'fromPlayButton'}]
           }
+        },
+        isPlayingAnswer: {
+          on: { CLICK: [{ target: 'displayQuestion', cond: 'fromToggleButton' }, 
+                        { target: 'displayAnswer', cond: 'fromPlayButton' }] }
         }
-      }
-    },
-    isPlaying: {
-
+      },
     },
     complete: {
       entry: ['resetSelectedAnswer'],
@@ -67,6 +64,7 @@ const quizMachine = Machine({
     },
     fromPlayButton: (_, event) => {
       console.log('from the play button');
+      console.log(event.selectedButton);
       return event.selectedButton.target.id==='play-button';
     },
     fromSettingsButton: (_, event) => {
