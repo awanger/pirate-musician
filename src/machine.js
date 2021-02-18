@@ -64,8 +64,8 @@ const quizMachine = Machine({
     },
     fromPlayButton: (_, event) => {
       console.log('from the play button');
-      console.log(event.selectedButton);
-      return event.selectedButton.target.id==='play-button';
+      console.log(event.selectedButton.target);
+      return event.selectedButton.target.id==='play';
     },
     fromSettingsButton: (_, event) => {
       console.log('from the settings button');

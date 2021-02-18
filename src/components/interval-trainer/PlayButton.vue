@@ -1,9 +1,11 @@
 <template>
-  <button class="btn btn-play" v-bind:class="{ 'btn-stop': getCurrentState().value.display === 'isPlayingQuestion' || getCurrentState().value.display === ('isPlayingAnswer') }" id="play-button" v-on:click="send('CLICK', $event)">
+  <button class="btn btn-play" v-bind:class="{ 'btn-stop': getCurrentState().value.display === 'isPlayingQuestion' || getCurrentState().value.display === ('isPlayingAnswer') }" 
+                 id="play" v-on:click="send('CLICK', $event)">
     <img v-if="getCurrentState().value.display === 'isPlayingQuestion' 
                || getCurrentState().value.display === ('isPlayingAnswer')" 
-                  src="@/assets/icons/stop-solid.svg" alt="stop icon here">
-    <img v-else src="@/assets/icons/play-solid.svg" alt="play icon here">
+                  src="@/assets/icons/stop-solid.svg" alt="stop icon here"
+                  id="play">
+    <img v-else src="@/assets/icons/play-solid.svg" alt="play icon here" id="play">
   </button>
 </template>
 
