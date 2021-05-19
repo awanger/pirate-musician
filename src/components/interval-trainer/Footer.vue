@@ -1,11 +1,15 @@
 <template>
   <footer class="footer" v-bind:class="{ correct: isCorrect, incorrect: isIncorrect }">
     <div class="container">
-      <router-link v-if="getCurrentState().matches('complete')"
-                   to="/" class="exit">
-        <action-button v-on:click.native="send('CLICK', $event)"/>
+      <img v-on:click="send('CLICK', $event)" id="settings" src="@/assets/icons/cog-solid.svg" alt="Speaker icon here">
+      <router-link v-if="getCurrentState().matches('complete')" to="/" class="exit">
+        <div class="btn-container" v-on:click.native="send('CLICK', $event)">
+          <action-button/>
+        </div>
       </router-link>
-      <action-button v-else v-on:click.native="send('CLICK', $event)"/>
+      <div v-else class="btn-container" v-on:click="send('CLICK', $event)">
+        <action-button/>
+      </div>
     </div>
   </footer>
 </template>
@@ -53,5 +57,13 @@ export default {
 
 <style lang="scss" scoped>
 
-
+  #settings {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: transform .8s ease-in-out;
+    &:hover{
+      transform: rotate(270deg);
+    }
+  }  
 </style>

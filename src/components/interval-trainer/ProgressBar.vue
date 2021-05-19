@@ -1,15 +1,11 @@
 <template>
-  <div class="header">
-    <div class="progress-bar">
-      <div class="bar-container">
-        <div class="numerical-indicator">
-          {{ getCurrentState().context.currentQuestionIndex }}/{{ getCurrentState().context.totalNumQuestions }}
-        </div>
-        <!-- <div class="fill" v-bind:style="{ width: (getCurrentState().context.currentQuestionIndex / getCurrentState().context.totalNumQuestions)*100 + '%' }"></div> -->
-        <div class="fill" style="width: 50%"></div>
-      </div>
+  <div class="progress-bar">
+    <div class="bar-container">
+      <div class="fill" v-bind:style="{ width: (getCurrentState().context.currentQuestionIndex / getCurrentState().context.totalNumQuestions)*100 + '%' }"></div>
     </div>
-    <img v-on:click="send('CLICK', $event)" id="settings" src="@/assets/icons/cog-solid.svg" alt="Speaker icon here">
+    <div class="numerical-indicator">
+      {{ getCurrentState().context.currentQuestionIndex }}/{{ getCurrentState().context.totalNumQuestions }}
+    </div>
   </div>
 </template>
 
@@ -42,3 +38,8 @@ export default {
 }
 </script>
 
+
+
+<style lang="scss" scoped>
+
+</style>
