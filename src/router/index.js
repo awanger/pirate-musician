@@ -21,7 +21,7 @@ Vue.use(VueRouter)
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/IntervalTrainer.vue'),
     meta: {
-      title: 'Pirate Musician | Interval Training'
+      title: 'Pirate Musician | Interval Trainer'
     }
   }
 ]

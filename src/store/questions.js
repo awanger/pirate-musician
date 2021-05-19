@@ -1,9 +1,11 @@
+
+
 class Note {
   constructor(pitch, startStep, endStep) {
     this.pitch = pitch;
     this.quantizedStartStep = startStep;
     this.quantizedEndStep = endStep;
-    this.velocity = 100;
+    this.velocity = 115;
   }
   getPitch() {
     return this.pitch;
@@ -40,8 +42,8 @@ class Question {
     return Math.floor(Math.random()*(max - min) + min)
   }
 
-  static generateInterval(min_pitch, max_pitch, intervalStr="Octave", isAscending=true) {
-    var interval_to_pitch = {
+  static intervalToPitch(intervalName) {
+    var intervalDict = {
       "Unison":0,
       "m2":1,
       "M2":2,
@@ -56,24 +58,11 @@ class Question {
       "M7":11,
       "Octave":12 
     }
-    var referencePitch = this.getRandomInteger(min_pitch, max_pitch);
-    var secondPitch = referencePitch;
-
-    if(isAscending) {
-      secondPitch += interval_to_pitch[intervalStr];
-    } else {
-      secondPitch -= interval_to_pitch[intervalStr];
-    }
-
-    var firstNote = new Note(referencePitch, 0, 1);
-    var secondNote = new Note(secondPitch,1,2);
-
-    var interval = new Interval(firstNote, secondNote);
-    return interval
+    return intervalDict[intervalName];
   }
 
-  static pitchToInterval(interval) {
-    var pitch_dict = {
+  static pitchNumberToInterval(pitchNumber) {
+    var pitchDict = {
       0:"Unison",
       1:"m2",
       2:"M2",
@@ -88,12 +77,41 @@ class Question {
       11:"M7",
       12:"Octave" 
     }
-    
+    return pitchDict[pitchNumber];
+  }
+
+
+  static generateRandomInterval(isAscending=true) {
+
+    const LOWEST_PITCH = 48;
+    const HIGHEST_PITCH = 76;
+
+    var referencePitch = this.getRandomInteger(LOWEST_PITCH, HIGHEST_PITCH); // pitch number I think?
+    var secondPitch = referencePitch; // why are these the same?
+
+    var randomPitch = this.getRandomInteger(0, 12); // pitch range
+    var randomIntervalName = this.pitchNumberToInterval(randomPitch);
+    // console.log(randomIntervalName);
+
+    if(isAscending) {
+      secondPitch += this.intervalToPitch(randomIntervalName);
+    } else {
+      secondPitch -= this.intervalToPitch(randomIntervalName);
+    }
+
+    var firstNote = new Note(referencePitch, 0, 1);
+    var secondNote = new Note(secondPitch,1,2);
+
+    var interval = new Interval(firstNote, secondNote);
+    return interval
+  }
+
+  static pitchToIntervalName(interval) {
     var firstPitch = interval.getFirstNote().getPitch();
     var secondPitch = interval.getSecondNote().getPitch();
     var difference = Math.abs(firstPitch-secondPitch);
-    return pitch_dict[difference];
-  }
+    return this.pitchNumberToInterval(difference);
+  } 
 }
 
 /*
@@ -106,14 +124,16 @@ function generateQuestions(str[] intervalsSelected, int playbackTempo, int numOf
 
 let questions = []
 let NUM_OF_QUESTIONS = 4;
-const LOWEST_PITCH = 48;
-const HIGHEST_PITCH = 76;
+
 for(var i=0; i<NUM_OF_QUESTIONS; i++) {
-  let randomInterval = Question.generateInterval(LOWEST_PITCH, HIGHEST_PITCH);
-  let correctAnswer = Question.pitchToInterval(randomInterval);
+  let randomInterval = Question.generateRandomInterval(false);
+  // console.log(randomInterval);
+
+  let correctAnswer = Question.pitchToIntervalName(randomInterval);
+  // console.log(randomInterval)
   let question = new Question([randomInterval.getFirstNote(), randomInterval.getSecondNote()], correctAnswer, 60); // keep it like this for now
   questions.push(question);
 }
 
-console.log(questions);
+// console.log(questions);
 export default questions;

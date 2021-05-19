@@ -8,38 +8,76 @@ const quizMachine = Machine({
     currentQuestionIndex: 0,
     totalNumQuestions: questions.length,
     currentQuestion: null,
+    selectedAnswer: null
   },
-  initial: 'display',
+  initial: 'displayQuestion',
   states: {
     newQuestion: {
+      entry: ['resetSelectedAnswer'],
       on: { '': [
             { target: 'complete', cond: 'quizCompleted'},
-            { target: 'display' }
+            { target: 'displayQuestion' }
         ] }
     },
-    display: {
+    displayQuestion: {
       entry: ['loadQuestion', 'resetSelectedAnswer'],
-      initial: 'displayQuestion',
-      states: {
-        displayQuestion: {
-          on: { CLICK: [{ target: 'displayAnswer', cond: 'fromToggleButton'}, 
-                        { target: 'isPlayingQuestion', cond: 'fromPlayButton'}]
+      on: { CLICK: [
+              {
+                target: 'modal',
+                cond: 'fromSettingsButton'
+              },
+              { 
+                target: 'checked', actions: assign({ selectedAnswer: (context, event) => context.selectedAnswer = event.selectedButton.target.dataset.interval }),
+              },
+            ]
+      }
+    },
+    checked: {
+      on: {
+        CLICK: [
+          { 
+            target: 'evaluate', 
+            cond: 'fromActionButton' // if the click event is from the action button, then evaluate the answer
           },
-        },
-        isPlayingQuestion: {
-          on: { CLICK: [{ target: 'displayAnswer', cond: 'fromToggleButton' }, 
-                        { target: 'displayQuestion', cond: 'fromPlayButton' }] }
-        },
-        displayAnswer: {
-          on: { CLICK: [{ target: 'displayQuestion', cond: 'fromToggleButton'}, 
-                        { target: 'isPlayingAnswer', cond: 'fromPlayButton'}]
+          {
+            target: 'modal',
+            cond: 'fromSettingsButton'
+          },
+          { 
+            target: 'checked',
+            actions: assign({ selectedAnswer: (context, event) => context.selectedAnswer = event.selectedButton.target.dataset.interval })
           }
-        },
-        isPlayingAnswer: {
-          on: { CLICK: [{ target: 'displayQuestion', cond: 'fromToggleButton' }, 
-                        { target: 'displayAnswer', cond: 'fromPlayButton' }] }
-        }
-      },
+        ]
+      }
+    },
+    modal: {
+      on: {
+        CLICK: [
+          {
+            target: 'checked',
+            cond: 'fromCloseButton'
+          },
+          {
+            target: 'displayQuestion',
+            cond: 'fromCloseButton'
+          }
+        ]
+      }
+    },
+    evaluate: {
+      on: {
+        '': [
+          { target: 'correct', cond: 'isCorrect' },
+          { target: 'incorrect' }
+        ]
+      }
+    },
+    correct: {
+      entry: ['incrementQuestionIndex'],
+      on: { CLICK: { target:'newQuestion', cond: 'fromActionButton' } }
+    },
+    incorrect: {
+      on: { CLICK: { target:'displayQuestion', cond: 'fromActionButton' } }
     },
     complete: {
       entry: ['resetSelectedAnswer'],
@@ -58,31 +96,22 @@ const quizMachine = Machine({
       return context.selectedAnswer === context.currentQuestion.correctAnswer;
     },
     fromActionButton: (_, event) => {
-      console.log('from the action button');
-      // console.log(event.selectedButton.target.classList);
-      return event.selectedButton.target.classList.contains('btn-action');
-    },
-    fromPlayButton: (_, event) => {
-      console.log('from the play button');
-      console.log(event.selectedButton.target);
-      return event.selectedButton.target.id==='play';
+      console.log(event.selectedButton.target.classList);
+      return event.selectedButton.target.classList.contains('btn-container') || 
+             event.selectedButton.target.classList.contains('btn-action');
     },
     fromSettingsButton: (_, event) => {
-      console.log('from the settings button');
+      // console.log('this message should be coming from settings button');
       // console.log(event.selectedButton.target.id);
       return event.selectedButton.target.id==='settings';
-    },
-    fromToggleButton: (_, event) => {
-      console.log('from the toggle button');
-      return event.selectedButton.target.classList.contains('btn-show');
     },
     fromCloseButton: (_, event) => {
       console.log(event.selectedButton.target.id);
       return event.selectedButton.target.id==='close';
     },
     quizCompleted: (context) => { return context.currentQuestionIndex === context.totalNumQuestions; },
-    previousStateIsdisplay: (ctx, e, { state }) =>  { 
-      return state.history.matches('display');
+    previousStateIsDisplayQuestion: (ctx, e, { state }) =>  { 
+      return state.history.matches('displayQuestion');
     },
     previousStateIsChecked: (ctx, e, { state }) =>  { 
       return state.history.matches('checked');
