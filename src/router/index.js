@@ -14,14 +14,14 @@ Vue.use(VueRouter)
     }
   },
   {
-    path: '/bach-chorale',
-    name: 'BachChorale',
+    path: '/interval-trainer',
+    name: 'IntervalTrainer',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/BachChorale.vue'),
+    component: () => import(/* webpackChunkName: "about" */ '../views/IntervalTrainer.vue'),
     meta: {
-      title: 'Pirate Musician | Bach Chorale Customizer'
+      title: 'Pirate Musician | Interval Training'
     }
   }
 ]
