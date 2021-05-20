@@ -5,7 +5,7 @@ class Note {
     this.pitch = pitch;
     this.quantizedStartStep = startStep;
     this.quantizedEndStep = endStep;
-    this.velocity = 115;
+    this.velocity = 100;
   }
   getPitch() {
     return this.pitch;
