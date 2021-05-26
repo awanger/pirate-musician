@@ -89,21 +89,24 @@ class Question {
     var firstPitch = this.getRandomInteger(LOWEST_PITCH, HIGHEST_PITCH); // pitch number I think?
     var secondPitch = firstPitch;
 
-    console.log(intervalName);
-
+    
     var pitchDistance = this.intervalToPitch(intervalName); // pitch range
     // var randomIntervalName = this.pitchNumberToInterval(randomPitch);
-    // console.log(randomIntervalName);
-
+    // console.log(intervalName);
+    // console.log(pitchDistance);
+    
     if(isAscending) {
       secondPitch += pitchDistance;
     } else {
       secondPitch -= pitchDistance;
     }
 
+    // console.log(secondPitch);
+    
     var firstNote = new Note(firstPitch,0, 1);
     var secondNote = new Note(secondPitch,1,2);
-
+    // console.log(secondNote);
+    
     var interval = new Interval(firstNote, secondNote);
     return interval
   }
@@ -125,13 +128,13 @@ function generateQuestions(str[] intervalsSelected, int playbackTempo, int numOf
 */
 
 let questions = []
-let NUM_OF_QUESTIONS = 6;
-const intervalList = ['Unison', 'm2', 'M2', 'm3', 'M3', 'P4', 'Tritone', 'P5', 'm6', 'M6', 'm7', 'M7', 'Octave'];
-// const easyIntervalList = ['Unison', 'M3', 'P5']
+let NUM_OF_QUESTIONS = 10;
+// const intervalList = ['Unison', 'm2', 'M2', 'm3', 'M3', 'P4', 'Tritone', 'P5', 'm6', 'M6', 'm7', 'M7', 'Octave'];
+const intervalList = ['Unison', 'M3', 'P5'] // easy version for children
 
 for(var i=0; i<NUM_OF_QUESTIONS; i++) {
 
-  let randomIntervalName = intervalList[Question.getRandomInteger(0,intervalList.length+1)] // get 
+  let randomIntervalName = intervalList[Question.getRandomInteger(0,intervalList.length)] // get 
   let randomInterval = Question.generateInterval(randomIntervalName, true);
   // console.log(randomInterval);
 
