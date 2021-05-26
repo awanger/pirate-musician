@@ -81,25 +81,27 @@ class Question {
   }
 
 
-  static generateRandomInterval(isAscending=true) {
+  static generateInterval(intervalName, isAscending=true) {
 
     const LOWEST_PITCH = 48;
     const HIGHEST_PITCH = 76;
 
-    var referencePitch = this.getRandomInteger(LOWEST_PITCH, HIGHEST_PITCH); // pitch number I think?
-    var secondPitch = referencePitch; // why are these the same?
+    var firstPitch = this.getRandomInteger(LOWEST_PITCH, HIGHEST_PITCH); // pitch number I think?
+    var secondPitch = firstPitch;
 
-    var randomPitch = this.getRandomInteger(0, 12); // pitch range
-    var randomIntervalName = this.pitchNumberToInterval(randomPitch);
+    console.log(intervalName);
+
+    var pitchDistance = this.intervalToPitch(intervalName); // pitch range
+    // var randomIntervalName = this.pitchNumberToInterval(randomPitch);
     // console.log(randomIntervalName);
 
     if(isAscending) {
-      secondPitch += this.intervalToPitch(randomIntervalName);
+      secondPitch += pitchDistance;
     } else {
-      secondPitch -= this.intervalToPitch(randomIntervalName);
+      secondPitch -= pitchDistance;
     }
 
-    var firstNote = new Note(referencePitch, 0, 1);
+    var firstNote = new Note(firstPitch,0, 1);
     var secondNote = new Note(secondPitch,1,2);
 
     var interval = new Interval(firstNote, secondNote);
@@ -123,10 +125,14 @@ function generateQuestions(str[] intervalsSelected, int playbackTempo, int numOf
 */
 
 let questions = []
-let NUM_OF_QUESTIONS = 4;
+let NUM_OF_QUESTIONS = 6;
+const intervalList = ['Unison', 'm2', 'M2', 'm3', 'M3', 'P4', 'Tritone', 'P5', 'm6', 'M6', 'm7', 'M7', 'Octave'];
+// const easyIntervalList = ['Unison', 'M3', 'P5']
 
 for(var i=0; i<NUM_OF_QUESTIONS; i++) {
-  let randomInterval = Question.generateRandomInterval(false);
+
+  let randomIntervalName = intervalList[Question.getRandomInteger(0,intervalList.length+1)] // get 
+  let randomInterval = Question.generateInterval(randomIntervalName, true);
   // console.log(randomInterval);
 
   let correctAnswer = Question.pitchToIntervalName(randomInterval);
