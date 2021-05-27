@@ -1,5 +1,6 @@
 import { Machine, assign } from 'xstate';
 import questions from '@/store/questions';
+console.log(questions);
 
 
 const quizMachine = Machine({
@@ -81,7 +82,8 @@ const quizMachine = Machine({
     },
     complete: {
       entry: ['resetSelectedAnswer'],
-      type: 'final'
+      exit: 'resetQuestionIndex',
+      on: { CLICK: { target:'displayQuestion', cond: 'fromRestartButton' } }
     }
   }
 },
@@ -89,7 +91,8 @@ const quizMachine = Machine({
   actions: {
     loadQuestion: assign({ currentQuestion: context => questions[context.currentQuestionIndex] }),
     incrementQuestionIndex: assign( { currentQuestionIndex: context => context.currentQuestionIndex + 1 }),
-    resetSelectedAnswer: assign( { selectedAnswer: context => context.selectedAnswer = null })
+    resetSelectedAnswer: assign( { selectedAnswer: context => context.selectedAnswer = null }),
+    resetQuestionIndex: assign( { currentQuestionIndex: context => context.currentQuestionIndex = 0 })
   },
   guards: {
     isCorrect: (context) => {
@@ -110,6 +113,10 @@ const quizMachine = Machine({
       return event.selectedButton.target.id==='close';
     },
     quizCompleted: (context) => { return context.currentQuestionIndex === context.totalNumQuestions; },
+    fromRestartButton: (_, event) => {
+      console.log(event.selectedButton.target.id);
+      return event.selectedButton.target.id==='restart';
+    },
     previousStateIsDisplayQuestion: (ctx, e, { state }) =>  { 
       return state.history.matches('displayQuestion');
     },

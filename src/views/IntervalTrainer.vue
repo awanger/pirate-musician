@@ -1,6 +1,6 @@
 <template>
   <div id="interval-trainer">
-    <!-- <div>current state: {{ getCurrentState().value }}</div> -->
+    <div>current state: {{ getCurrentState().value }}</div>
     <!-- <div>{{ getCurrentState().context }}</div> -->
     <settings-modal v-if="getCurrentState().matches('modal')"></settings-modal>
     <progress-bar></progress-bar>
@@ -8,7 +8,8 @@
       <div class="dialog-box">
         <h1>You made it! 🎉🎉</h1>
         <p>Would you like to play again with the same questions?</p>
-        <button class="btn btn-dialog">Yes, please!</button>
+        <button class="btn btn-dialog" id="restart"
+        v-on:click="send('CLICK', $event)">Yes, please!</button>
         <!-- <button class="btn">No, get me out of here!</button> -->
       </div>
     </div>
