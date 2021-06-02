@@ -118,7 +118,7 @@ class Question {
 }
 
 let questions = []
-let NUM_OF_QUESTIONS = 3;
+let NUM_OF_QUESTIONS = 4;
 // const intervalList = ['Unison', 'm2', 'M2', 'm3', 'M3', 'P4', 'Tritone', 'P5', 'm6', 'M6', 'm7', 'M7', 'Octave'];
 const intervalList = ['Unison', 'M3', 'P5'] // easy version for children
 
