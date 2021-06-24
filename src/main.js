@@ -8,3 +8,7 @@ new Vue({
   router,
   render: h => h(App)
 }).$mount('#app')
+
+console.log('printing from the main.js file')
+
+
