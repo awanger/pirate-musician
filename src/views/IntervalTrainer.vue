@@ -14,10 +14,12 @@
       </div>
     </div>
     <div v-else id='question-display'>
-      <play-button v-on:click.native="play"/>
-      <div>
+      <div id="question-wrapper">
         <h1 class="question">Please fill in the missing note</h1>
         <div class="music-render" id="boo"></div>
+        <div class="play-button-wrapper">
+          <play-button v-on:click.native="play"/>
+        </div>
       </div>
     </div>
     
@@ -60,15 +62,15 @@ export default {
   mounted() {
 
     let renderer = new VF.Renderer(document.getElementById("boo"), VF.Renderer.Backends.SVG);
-    renderer.resize(500, 250);
+    renderer.resize(400, 225);
 
     this.ctx = renderer.getContext();
 
         // Create a stave at position 10, 40 of width 400 on the canvas.
-    let stave = new VF.Stave(10, 40, 400);
+    let stave = new VF.Stave(0, 0, 380);
 
-    // Add a clef and time signature.
-    stave.addClef("treble").addTimeSignature("4/4");
+    // Add a clef
+    stave.addClef("treble");
 
     // Connect it to the rendering context and draw!
     stave.setContext(this.ctx).draw();
@@ -123,17 +125,40 @@ export default {
 <style lang="scss" scoped>
   #interval-trainer {
     padding-top: 40px;
-    height: 56vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    height: 85vh;
+    display: grid;
+    // flex-direction: column;
+    // justify-content: space-between;
     overflow: visible;
   }
 
   #question-display {
     // margin-top: 240px; // probably need to write additional media queries
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: 38px;
+    grid-template-columns: repeat(100, 1fr);
+    // grid-template-rows: repeat(100, 1fr);
+    // column-gap: 38px;
   }
+
+  #question-wrapper {
+    grid-column: 51/52; // basically place the question wrapper in the middle of the page
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 50px 120px;
+  }
+
+  .question {
+    text-align: left;
+    margin: 0;
+    font-size: 2rem;
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+
+  .play-button-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
 </style>

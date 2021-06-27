@@ -1,6 +1,6 @@
 <template>
   <button class="btn btn-play">
-    <img src="@/assets/icons/volume-up-solid.svg" alt="Speaker icon here">
+    <img id="play-icon" src="@/assets/icons/play-solid.svg" alt="Speaker icon here">
   </button>
 </template>
 
@@ -12,4 +12,5 @@ export default {
 
 
 <style lang="scss" scoped>
+
 </style>

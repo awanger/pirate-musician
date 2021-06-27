@@ -40,11 +40,13 @@
   &.btn-play {
     background-color: $lagoon;
     box-shadow: $shadow-offset $overboard; // 3D button effect
-    width: 198px;
-    height: 198px;
+    width: 55px;
+    height: 55px;
     @extend %press-down;
     @extend %hover-effect;
-
+    #play-icon {
+      width: 27px;
+    }
   }
   
   &.btn-action {
