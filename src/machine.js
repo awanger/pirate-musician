@@ -1,6 +1,6 @@
 import { Machine, assign } from 'xstate';
 import questions from '@/store/questions';
-console.log(questions);
+// console.log(questions);
 
 
 const quizMachine = Machine({

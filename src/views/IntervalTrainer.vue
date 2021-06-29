@@ -60,38 +60,36 @@ export default {
     }
   },
   mounted() {
-
     let renderer = new VF.Renderer(document.getElementById("boo"), VF.Renderer.Backends.SVG);
+    let currentQuestion = this.getCurrentState().context.currentQuestion;
+    let noteName = currentQuestion.notes[0].getNoteName();
+    console.log(`The note name is ${noteName}`);
     renderer.resize(400, 225);
 
-    this.ctx = renderer.getContext();
+  this.ctx = renderer.getContext();
 
-        // Create a stave at position 10, 40 of width 400 on the canvas.
-    let stave = new VF.Stave(0, 0, 380);
+      // Create a stave at position 10, 40 of width 400 on the canvas.
+  let stave = new VF.Stave(0, 0, 380);
 
-    // Add a clef
-    stave.addClef("treble");
+  // Add a clef
+  stave.addClef("treble");
 
-    // Connect it to the rendering context and draw!
-    stave.setContext(this.ctx).draw();
+  // Connect it to the rendering context and draw!
+  stave.setContext(this.ctx).draw();
+  var notes = [];
+  var referenceNote;
 
-  var notes = [
-    // A quarter-note C.
-    new VF.StaveNote({clef: "treble", keys: ["c/4"], duration: "q" }),
+  // need to account for other accidentals as well
+  if(noteName.search("#") != -1) {
+    referenceNote = new VF.StaveNote({clef: "treble", keys: [`${noteName}/4`], duration: "q" }).addAccidental(0, new VF.Accidental("#"))
+  } else {
+    referenceNote =  new VF.StaveNote({clef: "treble", keys: [`${noteName}/4`], duration: "q" });
+  }
 
-    // A quarter-note D.
-    new VF.StaveNote({clef: "treble", keys: ["d/4"], duration: "q" }),
-
-    // A quarter-note rest. Note that the key (b/4) specifies the vertical
-    // position of the rest.
-    new VF.StaveNote({clef: "treble", keys: ["b/4"], duration: "qr" }),
-
-    // A C-Major chord.
-    new VF.StaveNote({clef: "treble", keys: ["c/4", "e/4", "g/4"], duration: "q" })
-  ];
+  notes.push(referenceNote);
 
   // Create a voice in 4/4 and add the notes from above
-  var voice = new VF.Voice({num_beats: 4,  beat_value: 4});
+  var voice = new VF.Voice({num_beats: 1,  beat_value: 4});
   voice.addTickables(notes);
 
   // Format and justify the notes to 400 pixels.
