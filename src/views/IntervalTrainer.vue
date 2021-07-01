@@ -66,7 +66,7 @@ export default {
     console.log(`The note name is ${noteName}`);
     renderer.resize(400, 225);
 
-  this.ctx = renderer.getContext();
+    let context = renderer.getContext();
 
       // Create a stave at position 10, 40 of width 400 on the canvas.
   let stave = new VF.Stave(0, 0, 380);
@@ -75,7 +75,7 @@ export default {
   stave.addClef("treble");
 
   // Connect it to the rendering context and draw!
-  stave.setContext(this.ctx).draw();
+  stave.setContext(context).draw();
   var notes = [];
   var referenceNote;
 
@@ -96,7 +96,7 @@ export default {
   var formatter = new VF.Formatter().joinVoices([voice]).format([voice], 400);
   console.log(formatter); // a little hack to bypass eslint unused variable error
   // Render voice
-  voice.draw(this.ctx, stave);
+  voice.draw(context, stave);
   },
   methods: {
     send(event, nativeEvent) {
