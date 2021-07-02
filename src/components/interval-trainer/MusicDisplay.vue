@@ -1,5 +1,7 @@
 <template>
-  <div class="music-render" id="boo"></div>
+  <div class="music-render">
+    <div id="boo"></div>
+  </div>
 </template>
 
 
@@ -7,6 +9,8 @@
 import { getters, mutations, actions } from '@/store/store.js';
 import Vex from 'vexflow';
 const VF = Vex.Flow;
+
+
 
 export default {
   name: "ActionButton",
@@ -25,40 +29,44 @@ export default {
     let renderer = new VF.Renderer(document.getElementById("boo"), VF.Renderer.Backends.SVG);
     let currentQuestion = this.getCurrentState().context.currentQuestion;
     let noteName = currentQuestion.notes[0].getNoteName();
-    console.log(`The note name is ${noteName}`);
-    renderer.resize(400, 225);
 
+    renderer.resize(625, 225);
     let context = renderer.getContext();
 
-      // Create a stave at position 10, 40 of width 400 on the canvas.
-    let stave = new VF.Stave(0, 0, 380);
-
-    // Add a clef
-    stave.addClef("treble");
-
-    // Connect it to the rendering context and draw!
-    stave.setContext(context).draw();
-    var notes = [];
-    var referenceNote;
+  // measure 1
+  var staveMeasure1 = new VF.Stave(10, 0, 300);
+  var notesMeasure1 = [];
+  var referenceNote;
+  staveMeasure1.addClef("treble").addTimeSignature("4/4").setContext(context).draw();
 
     // need to account for other accidentals as well
     if(noteName.search("#") != -1) {
-      referenceNote = new VF.StaveNote({clef: "treble", keys: [`${noteName}/4`], duration: "q" }).addAccidental(0, new VF.Accidental("#"))
+      referenceNote = new VF.StaveNote({clef: "treble", keys: [`${noteName}/4`], duration: "w" }).addAccidental(0, new VF.Accidental("#"))
     } else {
-      referenceNote =  new VF.StaveNote({clef: "treble", keys: [`${noteName}/4`], duration: "q" });
+      referenceNote =  new VF.StaveNote({clef: "treble", keys: [`${noteName}/4`], duration: "w" });
     }
 
-    notes.push(referenceNote);
+  console.log(referenceNote);
 
-    // Create a voice in 4/4 and add the notes from above
-    var voice = new VF.Voice({num_beats: 1,  beat_value: 4});
-    voice.addTickables(notes);
+  notesMeasure1.push(referenceNote);
 
-    // Format and justify the notes to 400 pixels.
-    var formatter = new VF.Formatter().joinVoices([voice]).format([voice], 400);
-    console.log(formatter); // a little hack to bypass eslint unused variable error
-    // Render voice
-    voice.draw(context, stave);
+  // Helper function to justify and draw a 4/4 voice
+  VF.Formatter.FormatAndDraw(context, staveMeasure1, notesMeasure1);
+
+  // measure 2 - juxtaposing second measure next to first measure
+  var staveMeasure2 = new VF.Stave(
+    staveMeasure1.width + staveMeasure1.x,
+    0,
+    275
+  );
+  staveMeasure2.setContext(context).draw();
+
+  // var notesMeasure2 = [
+  //   // new VF.StaveNote({ keys: ["c/5"], duration: "w" }),
+  // ];
+
+  // VF.Formatter.FormatAndDraw(context, staveMeasure2, notesMeasure2);
+
   },
   methods: {
     ...mutations,
