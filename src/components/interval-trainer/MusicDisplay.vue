@@ -1,12 +1,14 @@
 <template>
   <div class="music-render">
     <div id="boo"></div>
+    <command-box></command-box>
   </div>
 </template>
 
 
 <script>
 import { getters, mutations, actions } from '@/store/store.js';
+import CommandBox from "@/components/interval-trainer/CommandBox";
 import Vex from 'vexflow';
 const VF = Vex.Flow;
 
@@ -14,6 +16,7 @@ const VF = Vex.Flow;
 
 export default {
   name: "ActionButton",
+  components: { CommandBox },
   computed: {
     getCurrentState() {
       return getters.state;
