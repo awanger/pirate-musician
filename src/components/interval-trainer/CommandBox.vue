@@ -12,7 +12,7 @@ import { getters, mutations, actions } from '@/store/store.js';
 export default {
   name: "CommandBox",
   computed: {
-    assignUserInput() {
+    assignUserInput() { // probably should make this a watch property
       this.getCurrentState().context.userInput = this.userInput; // set global userinput to the local userInput value
       // console.log(this.getCurrentState().context.userInput); // global user input variable
       // assign the global userInput variable to this one

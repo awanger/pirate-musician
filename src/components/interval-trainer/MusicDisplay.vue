@@ -1,7 +1,7 @@
 <template>
   <div class="music-render">
     <div id="boo"></div>
-    <command-box></command-box>
+    <command-box v-on:keyup.native="getInput()"></command-box>
   </div>
 </template>
 
@@ -18,11 +18,6 @@ export default {
   name: "ActionButton",
   components: { CommandBox },
   computed: {
-    getUserInput() {
-      // var text = 'whatwhatinthebutt2';
-      console.log('The user input value is ' + this.getCurrentState().context.userInput);
-      return this.getCurrentState().context.userInput;
-    },
     getCurrentState() {
       return getters.state;
     },
@@ -35,7 +30,7 @@ export default {
   },
   data() {
     return {
-      userInput: ''
+      // userInput: ''
     }
   },
   mounted() {
@@ -58,9 +53,6 @@ export default {
     } else {
       referenceNote =  new VF.StaveNote({clef: "treble", keys: [`${noteName}/4`], duration: "w" });
     }
-
-  // console.log(referenceNote);
-
   notesMeasure1.push(referenceNote);
 
   // Helper function to justify and draw a 4/4 voice
@@ -73,6 +65,7 @@ export default {
     275
   );
   staveMeasure2.setContext(context).draw();
+  this.getInput();
 
   // var notesMeasure2 = [
   //   // new VF.StaveNote({ keys: ["c/5"], duration: "w" }),
@@ -97,6 +90,10 @@ export default {
       }
       // console.log(eventObj);
       getters.quizService.send(eventObj);
+    },
+    getInput() {
+      console.log('current user input: ' + this.getCurrentState().context.userInput);
+      return this.getCurrentState().context.userInput;
     }
   }
 }
