@@ -1,7 +1,7 @@
 <template>
   <div class="music-render">
     <div id="boo"></div>
-    <command-box v-on:keyup.native="getInput()"></command-box>
+    <command-box v-on:keyup.native="parse()"></command-box>
   </div>
 </template>
 
@@ -65,10 +65,9 @@ export default {
     275
   );
   staveMeasure2.setContext(context).draw();
-  this.getInput();
 
   // var notesMeasure2 = [
-  //   // new VF.StaveNote({ keys: ["c/5"], duration: "w" }),
+  //   new VF.StaveNote({ keys: ["c/5"], duration: "w" }),
   // ];
 
   // VF.Formatter.FormatAndDraw(context, staveMeasure2, notesMeasure2);
@@ -77,9 +76,6 @@ export default {
   methods: {
     ...mutations,
     ...actions,
-    parse() {
-      // this function will parse the user input
-    },
     answerIsSelected() {
       return this.getCurrentState().context.selectedAnswer !== null;
     },
@@ -91,9 +87,12 @@ export default {
       // console.log(eventObj);
       getters.quizService.send(eventObj);
     },
-    getInput() {
-      console.log('current user input: ' + this.getCurrentState().context.userInput);
-      return this.getCurrentState().context.userInput;
+    parse() {
+      var input = this.getCurrentState().context.userInput;
+      console.log('current user input: ' + input);
+
+
+      return input;
     }
   }
 }
