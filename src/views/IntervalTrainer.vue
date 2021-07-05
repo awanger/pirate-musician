@@ -1,7 +1,7 @@
 <template>
   <div id="interval-trainer">
-    <!-- <div>current state: {{ getCurrentState().value }}</div> -->
-    <!-- <div>{{ getCurrentState().context }}</div> -->
+    <div>current state: {{ getCurrentState().value }}</div>
+    <div>{{ getCurrentState().context.userInput }}</div>
     <settings-modal v-if="getCurrentState().matches('modal')"></settings-modal>
     <progress-bar></progress-bar>
     <div v-if="getCurrentState().matches('complete')" class='completion-screen'>

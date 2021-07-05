@@ -9,7 +9,7 @@ const quizMachine = Machine({
     currentQuestionIndex: 0,
     totalNumQuestions: questions.length,
     currentQuestion: null,
-    selectedAnswer: null
+    userInput: ''
   },
   initial: 'displayQuestion',
   states: {
@@ -22,18 +22,18 @@ const quizMachine = Machine({
     },
     displayQuestion: {
       entry: ['loadQuestion', 'resetSelectedAnswer'],
-      on: { CLICK: [
+      on: { KEYDOWN: [
               {
                 target: 'modal',
                 cond: 'fromSettingsButton'
               },
               { 
-                target: 'checked', actions: assign({ selectedAnswer: (context, event) => context.selectedAnswer = event.selectedButton.target.dataset.interval }),
+                target: 'checked', actions: assign({ userInput: (context, event) => context.userInput = event.selectedButton.key }),
               },
             ]
       }
     },
-    checked: {
+    checked: { 
       on: {
         CLICK: [
           { 

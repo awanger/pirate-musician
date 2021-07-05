@@ -18,6 +18,11 @@ export default {
   name: "ActionButton",
   components: { CommandBox },
   computed: {
+    getUserInput() {
+      // var text = 'whatwhatinthebutt2';
+      console.log('The user input value is ' + this.getCurrentState().context.userInput);
+      return this.getCurrentState().context.userInput;
+    },
     getCurrentState() {
       return getters.state;
     },
@@ -28,19 +33,24 @@ export default {
       return this.answerIsSelected() || this.getCurrentState().matches('complete');
     }
   },
+  data() {
+    return {
+      userInput: ''
+    }
+  },
   mounted() {
     let renderer = new VF.Renderer(document.getElementById("boo"), VF.Renderer.Backends.SVG);
     let currentQuestion = this.getCurrentState().context.currentQuestion;
     let noteName = currentQuestion.notes[0].getNoteName();
 
-    renderer.resize(625, 225);
+    renderer.resize(625, 100);
     let context = renderer.getContext();
 
   // measure 1
-  var staveMeasure1 = new VF.Stave(10, 0, 300);
-  var notesMeasure1 = [];
-  var referenceNote;
-  staveMeasure1.addClef("treble").addTimeSignature("4/4").setContext(context).draw();
+    var staveMeasure1 = new VF.Stave(10, 0, 300);
+    var notesMeasure1 = [];
+    var referenceNote;
+    staveMeasure1.addClef("treble").addTimeSignature("4/4").setContext(context).draw();
 
     // need to account for other accidentals as well
     if(noteName.search("#") != -1) {
@@ -49,7 +59,7 @@ export default {
       referenceNote =  new VF.StaveNote({clef: "treble", keys: [`${noteName}/4`], duration: "w" });
     }
 
-  console.log(referenceNote);
+  // console.log(referenceNote);
 
   notesMeasure1.push(referenceNote);
 
@@ -74,6 +84,9 @@ export default {
   methods: {
     ...mutations,
     ...actions,
+    parse() {
+      // this function will parse the user input
+    },
     answerIsSelected() {
       return this.getCurrentState().context.selectedAnswer !== null;
     },
@@ -82,6 +95,7 @@ export default {
         type: event,
         selectedButton: nativeEvent
       }
+      // console.log(eventObj);
       getters.quizService.send(eventObj);
     }
   }
@@ -91,5 +105,17 @@ export default {
 
 
 <style lang="scss" scoped>
+  .music-render {
+    border: 1px solid black;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+
+  #boo {
+    grid-column: 1/2;
+    grid-row: 1/2;
+    border: 1px solid red;
+  }
   
 </style>
