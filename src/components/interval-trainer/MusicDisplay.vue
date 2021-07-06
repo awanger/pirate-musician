@@ -1,7 +1,7 @@
 <template>
   <div class="music-render">
     <div id="boo"></div>
-    <command-box v-on:keyup.native="parse()"></command-box>
+    <command-box v-on:keydown.native="parse()"></command-box>
   </div>
 </template>
 
@@ -50,10 +50,26 @@ export default {
       // console.log(eventObj);
       getters.quizService.send(eventObj);
     },
+    parseAndRedraw() {
+      // pass the output of parse() to redraw()
+    },
     parse() {
       var input = this.getCurrentState().context.userInput;
-      console.log('current user input: ' + input);
+      // console.log('current user input: ' + input);
+      this.redraw();
       return input;
+    },
+    redraw() {
+      let oldBoo = document.getElementById("boo");
+      let newBoo = document.createElement("div");
+      let musicRenderer = document.querySelector('.music-render');
+
+      newBoo.id = "boo";
+      oldBoo.remove();
+      
+      musicRenderer.prepend(newBoo);
+      this.drawCanvas();
+      console.log('redrew the canvas');
     },
     drawCanvas() {
       let renderer = new VF.Renderer(document.getElementById("boo"), VF.Renderer.Backends.SVG);
@@ -87,6 +103,8 @@ export default {
       275
     );
     staveMeasure2.setContext(context).draw();
+
+    console.log('canvas drawn successfully');
     }
   }
 }
