@@ -1,7 +1,7 @@
 <template>
   <div class="music-render">
     <div id="boo"></div>
-    <command-box v-on:keydown.native="parse()"></command-box>
+    <command-box v-on:keyup.native="parse()"></command-box>
   </div>
 </template>
 
@@ -34,6 +34,7 @@ export default {
     }
   },
   mounted() {
+    // var randomNote = new VF.StaveNote({clef: "treble", keys: ['A/5'], duration: "w" });
     this.drawCanvas();
   },
   methods: {
@@ -53,13 +54,17 @@ export default {
     parseAndRedraw() {
       // pass the output of parse() to redraw()
     },
-    parse() {
+    parse() { // extract the note
       var input = this.getCurrentState().context.userInput;
-      // console.log('current user input: ' + input);
-      this.redraw();
+      console.log("the input I will parse is: " + input);
+
+      // parse the shit here and return a VexFlow note object
+      var note = new VF.StaveNote({clef: "treble", keys: [`${input}/4`], duration: "w" });
+      
+      this.redraw(note);
       return input;
     },
-    redraw() {
+    redraw(secondNote) {
       let oldBoo = document.getElementById("boo");
       let newBoo = document.createElement("div");
       let musicRenderer = document.querySelector('.music-render');
@@ -68,10 +73,10 @@ export default {
       oldBoo.remove();
       
       musicRenderer.prepend(newBoo);
-      this.drawCanvas();
-      console.log('redrew the canvas');
+      this.drawCanvas(secondNote);
+      // console.log("the extracted note is: " + secondNote);
     },
-    drawCanvas() {
+    drawCanvas(secondNote) {
       let renderer = new VF.Renderer(document.getElementById("boo"), VF.Renderer.Backends.SVG);
       let currentQuestion = this.getCurrentState().context.currentQuestion;
       let noteName = currentQuestion.notes[0].getNoteName();
@@ -96,6 +101,8 @@ export default {
     // Helper function to justify and draw a 4/4 voice
     VF.Formatter.FormatAndDraw(context, staveMeasure1, notesMeasure1);
 
+    
+    var notesMeasure2 = [];
     // measure 2 - juxtaposing second measure next to first measure
     var staveMeasure2 = new VF.Stave(
       staveMeasure1.width + staveMeasure1.x,
@@ -103,6 +110,11 @@ export default {
       275
     );
     staveMeasure2.setContext(context).draw();
+
+    notesMeasure2.push(secondNote);
+
+    VF.Formatter.FormatAndDraw(context, staveMeasure2, notesMeasure2);
+
 
     console.log('canvas drawn successfully');
     }
@@ -123,7 +135,6 @@ export default {
   #boo {
     grid-column: 1/2;
     grid-row: 1/2;
-    border: 1px solid red;
   }
   
 </style>
