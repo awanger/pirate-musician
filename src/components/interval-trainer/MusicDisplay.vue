@@ -86,7 +86,7 @@ export default {
       let context = renderer.getContext();
 
     // measure 1
-      var staveMeasure1 = new VF.Stave(10, 0, 200);
+      var staveMeasure1 = new VF.Stave(10, 0, 240);
       var notesMeasure1 = [];
       var referenceNote;
       staveMeasure1.addClef("treble").addTimeSignature("4/4").setContext(context).draw();
@@ -127,23 +127,22 @@ export default {
 
 <style lang="scss" scoped>
   .music-render {
-    border: 1px solid black;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 250px 200px 200px; // 250px 
     grid-template-rows: repeat(2, 1fr);
   }
 
   #boo {
-    grid-column: 1/2;
+    grid-column: 1/3;
     grid-row: 1/2;
   }
 
   input {
     border: 3px solid #5E696D; // I wonder if there's a way to gain access to the variable
     border-radius: 3px;
-    grid-column: 1/2;
+    grid-column: 2/3;
     grid-row: 2/3;
-    width: 150px;
+    width: 200px;
     &:focus {
       outline: none !important;
       border: 3px solid #02BAF2;

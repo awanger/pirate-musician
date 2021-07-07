@@ -99,7 +99,7 @@ export default {
   #question-wrapper {
     grid-column: 51/52; // basically place the question wrapper in the middle of the page
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 450px 100px;
     grid-template-rows: 50px 120px;
   }
 
