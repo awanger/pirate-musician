@@ -1,14 +1,17 @@
 <template>
   <div class="music-render">
     <div id="boo"></div>
-    <command-box v-on:keyup.native="parse()"></command-box>
+    <!-- <command-box v-model="userInput"></command-box> -->
+    <input v-on:keyup="parse()" 
+           v-model="userInput" 
+           type="text"
+           placeholder="Type in a note name">
   </div>
 </template>
 
 
 <script>
 import { getters, mutations, actions } from '@/store/store.js';
-import CommandBox from "@/components/interval-trainer/CommandBox";
 import Vex from 'vexflow';
 const VF = Vex.Flow;
 
@@ -16,7 +19,7 @@ const VF = Vex.Flow;
 
 export default {
   name: "ActionButton",
-  components: { CommandBox },
+  components: {},
   computed: {
     getCurrentState() {
       return getters.state;
@@ -30,7 +33,7 @@ export default {
   },
   data() {
     return {
-      // userInput: ''
+      userInput: ''
     }
   },
   mounted() {
@@ -55,14 +58,12 @@ export default {
       // pass the output of parse() to redraw()
     },
     parse() { // extract the note
-      var input = this.getCurrentState().context.userInput;
-      console.log("the input I will parse is: " + input);
+      console.log("the input I will parse is: " + this.userInput);
 
       // parse the shit here and return a VexFlow note object
-      var note = new VF.StaveNote({clef: "treble", keys: [`${input}/4`], duration: "w" });
+      var note = new VF.StaveNote({clef: "treble", keys: [`${this.userInput}/4`], duration: "w" });
       
       this.redraw(note);
-      return input;
     },
     redraw(secondNote) {
       let oldBoo = document.getElementById("boo");
@@ -81,11 +82,11 @@ export default {
       let currentQuestion = this.getCurrentState().context.currentQuestion;
       let noteName = currentQuestion.notes[0].getNoteName();
 
-      renderer.resize(625, 100);
+      renderer.resize(500, 100);
       let context = renderer.getContext();
 
     // measure 1
-      var staveMeasure1 = new VF.Stave(10, 0, 300);
+      var staveMeasure1 = new VF.Stave(10, 0, 200);
       var notesMeasure1 = [];
       var referenceNote;
       staveMeasure1.addClef("treble").addTimeSignature("4/4").setContext(context).draw();
@@ -107,7 +108,7 @@ export default {
     var staveMeasure2 = new VF.Stave(
       staveMeasure1.width + staveMeasure1.x,
       0,
-      275
+      200
     );
     staveMeasure2.setContext(context).draw();
 
@@ -135,6 +136,19 @@ export default {
   #boo {
     grid-column: 1/2;
     grid-row: 1/2;
+  }
+
+  input {
+    border: 3px solid #5E696D; // I wonder if there's a way to gain access to the variable
+    border-radius: 3px;
+    grid-column: 1/2;
+    grid-row: 2/3;
+    width: 150px;
+    &:focus {
+      outline: none !important;
+      border: 3px solid #02BAF2;
+      // box-shadow: 0 0 10px #02BAF2;
+    }
   }
   
 </style>
