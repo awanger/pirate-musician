@@ -38,7 +38,9 @@ export default {
   },
   mounted() {
     // var randomNote = new VF.StaveNote({clef: "treble", keys: ['A/5'], duration: "w" });
-    this.drawCanvas();
+    var array1 = ['E'];
+    var array2 = ['B']
+    this.drawCanvas(array1, array2);
   },
   methods: {
     ...mutations,
@@ -65,7 +67,7 @@ export default {
       
       this.redraw(note);
     },
-    redraw(secondNote) {
+    redraw() {
       let oldBoo = document.getElementById("boo");
       let newBoo = document.createElement("div");
       let musicRenderer = document.querySelector('.music-render');
@@ -74,53 +76,41 @@ export default {
       oldBoo.remove();
       
       musicRenderer.prepend(newBoo);
-      this.drawCanvas(secondNote);
+      // this.drawCanvas(secondNote);
       // console.log("the extracted note is: " + secondNote);
     },
+    drawMeasure(context, noteArray, x, y, width) {
+      var staveMeasure = new VF.Stave(x, y, width);
+      var notesMeasure = [];
+      // staveMeasure.addClef("treble").addTimeSignature("4/4").setContext(context).draw();
+      staveMeasure.setContext(context).draw();
+      for(var i=0; i < noteArray.length; i++) {
+        var noteName = noteArray[i];
+        var note = new VF.StaveNote({clef: "treble", keys: [`${noteName}/4`], duration: "w" });
+        notesMeasure.push(note);
+      }
+      VF.Formatter.FormatAndDraw(context, staveMeasure, notesMeasure);
+    },
     // function drawCanvas(noteArray1, noteArray2)
-    drawCanvas(secondNote) { 
-      let renderer = new VF.Renderer(document.getElementById("boo"), VF.Renderer.Backends.SVG);
-      let currentQuestion = this.getCurrentState().context.currentQuestion;
-      let noteName = currentQuestion.notes[0].getNoteName();
+    drawCanvas(noteArray1, noteArray2) {
+      var renderer = new VF.Renderer(document.getElementById("boo"), VF.Renderer.Backends.SVG);
+      // var currentQuestion = this.getCurrentState().context.currentQuestion;
+      // var noteName = currentQuestion.notes[0].getNoteName();
+      var noteArrays = [noteArray1, noteArray2];
 
       renderer.resize(500, 100);
       let context = renderer.getContext();
+      var width = 220;
 
-
-      // drawMeasures(notearray1, notearray2) 
-    // for each noteArray:
-      var staveMeasure1 = new VF.Stave(10, 0, 240);
-      var notesMeasure1 = [];
-      var referenceNote;
-      staveMeasure1.addClef("treble").addTimeSignature("4/4").setContext(context).draw(); // if first iteration
-
-      // need to account for other accidentals as well
-      if(noteName.search("#") != -1) {
-        referenceNote = new VF.StaveNote({clef: "treble", keys: [`${noteName}/4`], duration: "w" }).addAccidental(0, new VF.Accidental("#"))
-      } else {
-        referenceNote =  new VF.StaveNote({clef: "treble", keys: [`${noteName}/4`], duration: "w" });
+      for(var i=0; i < noteArrays.length; i++) {
+        var x = width*i;
+        var y = 0;
+        this.drawMeasure(context, noteArrays[i], x, y, width);
       }
-    notesMeasure1.push(referenceNote);
-
-    // Helper function to justify and draw a 4/4 voice
-    VF.Formatter.FormatAndDraw(context, staveMeasure1, notesMeasure1);
-
-    // function drawMeasure(context, noteArray2)
-    var notesMeasure2 = [];
-    // measure 2 - juxtaposing second measure next to first measure
-    var staveMeasure2 = new VF.Stave(
-      staveMeasure1.width + staveMeasure1.x,
-      0,
-      200
-    );
-    staveMeasure2.setContext(context).draw();
-
-    notesMeasure2.push(secondNote);
-
-    VF.Formatter.FormatAndDraw(context, staveMeasure2, notesMeasure2);
-
-
-    console.log('canvas drawn successfully');
+      // var staveMeasure1 = new VF.Stave(10, 0, 240);
+      // var notesMeasure1 = [];
+      // var referenceNote;
+      // staveMeasure1.addClef("treble").addTimeSignature("4/4").setContext(context).draw(); // if first iteration
     }
   }
 }
