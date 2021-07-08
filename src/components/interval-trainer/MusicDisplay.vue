@@ -77,7 +77,8 @@ export default {
       this.drawCanvas(secondNote);
       // console.log("the extracted note is: " + secondNote);
     },
-    drawCanvas(secondNote) {
+    // function drawCanvas(noteArray1, noteArray2)
+    drawCanvas(secondNote) { 
       let renderer = new VF.Renderer(document.getElementById("boo"), VF.Renderer.Backends.SVG);
       let currentQuestion = this.getCurrentState().context.currentQuestion;
       let noteName = currentQuestion.notes[0].getNoteName();
@@ -85,11 +86,13 @@ export default {
       renderer.resize(500, 100);
       let context = renderer.getContext();
 
-    // measure 1
+
+      // drawMeasures(notearray1, notearray2) 
+    // for each noteArray:
       var staveMeasure1 = new VF.Stave(10, 0, 240);
       var notesMeasure1 = [];
       var referenceNote;
-      staveMeasure1.addClef("treble").addTimeSignature("4/4").setContext(context).draw();
+      staveMeasure1.addClef("treble").addTimeSignature("4/4").setContext(context).draw(); // if first iteration
 
       // need to account for other accidentals as well
       if(noteName.search("#") != -1) {
@@ -102,7 +105,7 @@ export default {
     // Helper function to justify and draw a 4/4 voice
     VF.Formatter.FormatAndDraw(context, staveMeasure1, notesMeasure1);
 
-    
+    // function drawMeasure(context, noteArray2)
     var notesMeasure2 = [];
     // measure 2 - juxtaposing second measure next to first measure
     var staveMeasure2 = new VF.Stave(
