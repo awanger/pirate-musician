@@ -24,12 +24,6 @@ export default {
     getCurrentState() {
       return getters.state;
     },
-    isIncorrectOrCompleted() {
-      return this.getCurrentState().matches('incorrect') || this.getCurrentState().matches('complete');
-    },
-    isEnabled() {
-      return this.answerIsSelected() || this.getCurrentState().matches('complete');
-    }
   },
   data() {
     return {
@@ -45,9 +39,6 @@ export default {
   methods: {
     ...mutations,
     ...actions,
-    answerIsSelected() {
-      return this.getCurrentState().context.selectedAnswer !== null;
-    },
     send(event, nativeEvent) {
       const eventObj = {
         type: event,
@@ -82,8 +73,12 @@ export default {
     drawMeasure(context, noteArray, x, y, width) {
       var staveMeasure = new VF.Stave(x, y, width);
       var notesMeasure = [];
-      // staveMeasure.addClef("treble").addTimeSignature("4/4").setContext(context).draw();
-      staveMeasure.setContext(context).draw();
+
+      if(x===0) { // if it's the first measure being drawn
+        staveMeasure.addClef("treble").addTimeSignature("4/4").setContext(context).draw();
+      } else {
+        staveMeasure.setContext(context).draw();
+      }
       for(var i=0; i < noteArray.length; i++) {
         var noteName = noteArray[i];
         var note = new VF.StaveNote({clef: "treble", keys: [`${noteName}/4`], duration: "w" });
@@ -107,10 +102,6 @@ export default {
         var y = 0;
         this.drawMeasure(context, noteArrays[i], x, y, width);
       }
-      // var staveMeasure1 = new VF.Stave(10, 0, 240);
-      // var notesMeasure1 = [];
-      // var referenceNote;
-      // staveMeasure1.addClef("treble").addTimeSignature("4/4").setContext(context).draw(); // if first iteration
     }
   }
 }
@@ -121,7 +112,7 @@ export default {
 <style lang="scss" scoped>
   .music-render {
     display: grid;
-    grid-template-columns: 250px 200px 200px; // 250px 
+    grid-template-columns: 220px 220px 200px; // 250px 
     grid-template-rows: repeat(2, 1fr);
   }
 
@@ -135,7 +126,7 @@ export default {
     border-radius: 3px;
     grid-column: 2/3;
     grid-row: 2/3;
-    width: 200px;
+    width: 220px;
     &:focus {
       outline: none !important;
       border: 3px solid #02BAF2;
